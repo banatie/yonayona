@@ -94,6 +94,14 @@ https://material.io/resources/icons/?icon=card_membership&style=baseline
 https://www.pexels.com/?onboarding=skipped
 #### Music
 https://www.fesliyanstudios.com/royalty-free-music/downloads-c/peaceful-and-relaxing-music/22
+#### Font
+ロンドB
+https://moji-waku.com/ronde/index.html
+廻想体
+https://moji-waku.com/kaiso/index.html
+マキナス4
+https://moji-waku.com/makinas/index.html
+
 
 #### Naming Convention
 pep8
