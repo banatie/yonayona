@@ -101,15 +101,16 @@ Accent Color | Purple? | 5%
 - [material.io](https://material.io/resources/icons/?style=baseline)
 
 #### Favicon
-- [favicon.io](https://favicon.io/favicon-generator/)
-- [Google Font](https://fonts.google.com/?preview.text=yonayona&preview.text_type=custom)
 Parameter | Value
-------- |-------|------- 
+------- |-------
 Text | yonayona
 Background Color | #000
 Text Color | #FFF
 Font | Audiowide
 Font Size | 20
+
+- [favicon.io](https://favicon.io/favicon-generator/)
+- [Google Font](https://fonts.google.com/?preview.text=yonayona&preview.text_type=custom)
 
 #### Pictures
 - [pexel](https://www.pexels.com/?onboarding=skipped)
