@@ -73,42 +73,76 @@ SEO Basics | 1/1 | 1/2 | 3h |
 Marketing  | 1/1 | 1/2 | 3h | 
 Continuous Improvement  | 1/3 | 1/31 |  | 
 
-## 5. Development
-### Environment
-#### OS
-Ubuntu 18.04
-#### Browser
-Mozilla Firefox 83.0
-### Frameworks
-Django@3.1.4
-Materialize@1.0.0
-#### Database
-Postresql
-### Server
-Heroku Hobby plan($7/month)
+## 5. Design
+### Inspiring website
+- [PaperRock](https://www.paperockcreative.com/)
+- [index.studio](https://index.studio/)
+- [loris](https://www.loris-stavrinides.com/about)
+
+### Method
+- [Atomic Design](https://qiita.com/teradonburi/items/412f65147525ff34dbbd)
+
+### Layout
+グリッドレイアウト
+
+### Color
+Color Type | Color | Percentage
+------- |-------|------- 
+Base Color | Black | 70%
+Main Color | Gold | 25%
+Accent Color | Purple? | 5%
+
+### Key Visual
+- [Night Forest](https://www.pexels.com/photo/person-sky-silhouette-night-32237/)
 
 ### Materials
 #### Icon
-yonayona
-https://material.io/resources/icons/?icon=card_membership&style=baseline
-#### Favicon
-yonayona
-#### Pictures
-https://www.pexels.com/?onboarding=skipped
-#### Music
-https://www.fesliyanstudios.com/royalty-free-music/downloads-c/peaceful-and-relaxing-music/22
-#### Font
-- ロンドB
-https://moji-waku.com/ronde/index.html
-- 廻想体
-https://moji-waku.com/kaiso/index.html
-- マキナス4
-https://moji-waku.com/makinas/index.html
+- [Flat Icon](http://flat-icon-design.com/)
+- [material.io](https://material.io/resources/icons/?style=baseline)
 
-#### Naming Convention
+#### Favicon
+- [favicon.io](https://favicon.io/favicon-generator/)
+- [Google Font](https://fonts.google.com/?preview.text=yonayona&preview.text_type=custom)
+Parameter | Value
+------- |-------|------- 
+Text | yonayona
+Background Color | #000
+Text Color | #FFF
+Font | Audiowide
+Font Size | 20
+
+#### Pictures
+- [pexel](https://www.pexels.com/?onboarding=skipped)
+
+#### Music
+- [fesliyanstudios](https://www.fesliyanstudios.com/royalty-free-music/downloads-c/peaceful-and-relaxing-music/22)
+
+#### Font
+- [ロンドB](https://moji-waku.com/ronde/index.html)
+- [廻想体](https://moji-waku.com/kaiso/index.html)
+- [マキナス4](https://moji-waku.com/makinas/index.html)
+
+## 6. Development
+### OS
+Ubuntu 18.04
+
+### Browser
+Mozilla Firefox 83.0
+
+### Frameworks
+Django@3.1.4
+Materialize@1.0.0
+
+### Database
+Postresql
+
+### Server
+Heroku Hobby plan($7/month)
+
+### Naming Convention
 pep8
 
-#### URI Design
+### URI Design
 /signup
 /login
 /logout
@@ -121,8 +155,26 @@ TBA
 - Ansible
 - docstring
 
-## 6. History
-Budget: 30000yen
+## 7. SEO
+### titleタグ
+検索結果のページの見出しとして使われます。50文字以内が目安
+### meta descriptionタグ
+検索結果のページの説明として使われます。50〜120文字以内が目安(meta descriptionとは)
+### meta keywords
+検索結果に反映されないので不要（参考：SEOとキーワード数（メタタグ・タイトル・1ページ内）の正しい設計）
+### h1タグ
+1〜２個程度で適切なキーワードを含めたほうが良い（参考：SEO１位のための「h1」タグ設定ガイド）
+### パンくずリスト
+カテゴリ別のページにはつけたほうが良い、後述のOGPにもパンくずリスト表示させることもできます。（例：ECサイトやポータルサイトのカテゴリページ）
+### ページ内のキーワード出現頻度は適切か？
+５％前後が良いとされていて、１０％を超えると多すぎる。
+### 重要な画像（存在しないと意味が伝わらないもの）
+表示されないことも考慮してalt属性で説明をつける
+### Test
+- [funmaker](https://funmaker.jp/seo/funkeyrating/)
+
+
+## 8. History
 Catch Phrase: あなたもYonaYonaしてみませんか？素敵な出会いを
 Eliminated features
 12/20
