@@ -89,7 +89,10 @@ Heroku Hobby plan($7/month)
 
 ### Materials
 #### Icon
+- yonayona
 https://material.io/resources/icons/?icon=card_membership&style=baseline
+#### Favicon
+- yonayona
 #### Pictures
 https://www.pexels.com/?onboarding=skipped
 #### Music
@@ -101,7 +104,6 @@ https://moji-waku.com/ronde/index.html
 https://moji-waku.com/kaiso/index.html
 マキナス4
 https://moji-waku.com/makinas/index.html
-
 
 #### Naming Convention
 pep8
