@@ -20,9 +20,81 @@ Listed at README.md
 
 
 # Development
-## URI Architecture
 ## DB Architecture
+### User
+- id
+- first name
+- last name
+- email
+- password
+- last login datetime
+- paired user id
+### Message
+- id
+- conversation id
+- created datetime
+- user id from
+- user id to
+- delete by user from
+- delete by user to
+- text
+### Conversation History
+- id
+- user1 id
+- user2 id
+- datetime from
+- datetime to
+- duration in sec
+
+## URI Architecture
+### User
+signup/
+login/
+logout/
+
+### Communicate
+send/
+
+### View
+message/view/<message_id>
+message/delete/<message_id>
+
+
 ## Create Django App
 
 # Django App
-- Change DB to Postgresql
+project: yonayona
+apps: yonayona,admin
+
+## Create Project
+> django-admin startproject yonayona
+> python manage.py startapp yonayona
+
+## Database
+- switch to postgresql
+- create superuser
+- create models
+## Admin
+- add admin
+- register models for admin
+## Static files
+- add urlpatterns
+- place static files
+- update urls at form tag
+- rewrite as template
+- add views
+- verify page transition
+## Features
+- signup
+- login
+- logout
+
+## Commands
+python3 manager.py runserver
+
+### Database
+python3 manager.py makemigrations yonayona
+python3 manager.py migrate
+
+### Admin
+python3 manager.py createsuperuser
