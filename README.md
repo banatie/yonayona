@@ -75,6 +75,7 @@ Continuous Improvement  | 1/3 | 1/31 |  |
 
 ## 5. Design
 ### Inspiring website
+- [flickr](https://www.flickr.com/)
 - [PaperRock](https://www.paperockcreative.com/)
 - [index.studio](https://index.studio/)
 - [loris](https://www.loris-stavrinides.com/about)
