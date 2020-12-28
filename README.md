@@ -43,6 +43,8 @@ People who have PC and are awake for nothing at midnight
 - Display day theme
 - Display night theme
 - Show BYE... when time is up
+#### navbar
+- [codepen](https://codepen.io/j_holtslander/pen/RVXzqm)
 
 ### Terms
 交信/Communicate
@@ -142,7 +144,11 @@ Postresql
 Heroku Hobby plan($7/month)
 
 ### Naming Convention
-pep8
+Language | Name Convention
+------- |-------
+css | BEM(with hyphen)
+python | pep8
+
 
 ### URI Design
 /signup
