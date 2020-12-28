@@ -1,3 +1,4 @@
+/*** common ***/
 .key-visual {
     background-image: url("../images/night_forest.jpg");
     background-repeat: no-repeat;
@@ -12,6 +13,21 @@
     */
 }
 
+/* Font */
+@font-face {
+    font-family: "rondo-square";
+    src: url("../fonts/Ronde-B_square.otf");
+}
+@font-face {
+    font-family: "kaido-next";
+    src: url("../fonts/Kaiso-Next-B.otf");
+}
+@font-face {
+    font-family: "makinas-4";
+    src: url("../fonts/Makinas-4-Flat.otf"),
+    url("../fonts/Makinas-4-Square.otf");
+}
+
 body {
     /*
     font-family: "kaiso-next";
@@ -20,7 +36,21 @@ body {
     font-family: "makinas-4";
     color: white;
 }
-/* conversation */
+
+/* text color */
+.input-field [type=text],[type=email],[type=password] {
+    color: white;
+}
+/* label color */
+.input-field label {
+    color: white;
+}
+/*Icon color*/
+i.icon-white {
+    color: white;
+}
+
+/*** user page ***/
 #history {
     height: 50vh;
     overflow: visible scroll;
@@ -41,33 +71,4 @@ body {
 }
 .conversation {
     font-size: 20px;
-}
-
-/* Form */
-/* text color */
-.input-field [type=text],[type=email],[type=password] {
-    color: white;
-}
-/* label color */
-.input-field label {
-    color: white;
-}
-/*Icon color*/
-i.icon-white {
-    color: white;
-}
-
-/* Font */
-@font-face {
-    font-family: "rondo-square";
-    src: url("../fonts/Ronde-B_square.otf");
-}
-@font-face {
-    font-family: "kaido-next";
-    src: url("../fonts/Kaiso-Next-B.otf");
-}
-@font-face {
-    font-family: "makinas-4";
-    src: url("../fonts/Makinas-4-Flat.otf"),
-    url("../fonts/Makinas-4-Square.otf");
 }
