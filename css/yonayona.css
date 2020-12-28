@@ -20,6 +20,14 @@ body {
     font-family: "makinas-4";
 }
 
+/*Icon color*/
+i.icon-white {
+    color: white;
+}
+.input-field .prefix.active {
+    color: gold;
+}
+
 /*Placeholder color to white*/
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
