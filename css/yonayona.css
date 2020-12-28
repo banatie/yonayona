@@ -20,6 +20,29 @@ body {
     font-family: "makinas-4";
     color: white;
 }
+/* conversation */
+#history {
+    height: 50vh;
+    overflow: visible scroll;
+}
+#message-sender {
+    height: 15vh;
+}
+#message {
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid;
+    border-color: white;
+    height: 7rem;
+}
+#message:focus {
+    border-bottom: 2px solid;
+    border-color: #26a69a;
+}
+.conversation {
+    font-size: 20px;
+}
+
 /* Form */
 /* text color */
 .input-field [type=text],[type=email],[type=password] {
