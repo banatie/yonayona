@@ -1,0 +1,36 @@
+.key-visual {
+    background-image: url("../images/night_forest.jpg");
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+    /*
+    vh - view port height
+    background-size: auto/contain/cover
+    auto - default
+    contain - fit as maximum size
+    cover - fit as minimum size
+    */
+}
+
+body {
+    /*
+    font-family: "kaiso-next";
+    font-family: "rondo-square";
+    */
+    font-family: "makinas-4";
+}
+
+/* Font */
+@font-face {
+    font-family: "rondo-square";
+    src: url("../fonts/Ronde-B_square.otf");
+}
+@font-face {
+    font-family: "kaido-next";
+    src: url("../fonts/Kaiso-Next-B.otf");
+}
+@font-face {
+    font-family: "makinas-4";
+    src: url("../fonts/Makinas-4-Flat.otf"),
+    url("../fonts/Makinas-4-Square.otf");
+}
