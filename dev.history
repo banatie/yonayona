@@ -93,6 +93,11 @@ apps: yonayona,admin
 python3 manager.py runserver
 
 ### Database
+https://qiita.com/shigechioyo/items/9b5a03ceead6e5ec87ec
+sudo apt update
+sudo apt install -y python3-pip python3-dev libpq-dev postgresql postgresql-contrib
+pip3 install psycopg2-binary
+
 python3 manager.py makemigrations yonayona
 python3 manager.py migrate
 
