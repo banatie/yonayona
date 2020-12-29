@@ -21,27 +21,15 @@ Listed at README.md
 
 # Development
 ## DB Architecture
-### User
-- id
-- first name
-- last name
-- email
-- password
-- last login datetime
-- paired user id
 ### Message
-- id
-- conversation id
+- user from
+- user to
 - created datetime
-- user id from
-- user id to
 - delete by user from
 - delete by user to
 - text
 ### Conversation History
-- id
-- user1 id
-- user2 id
+- users
 - datetime from
 - datetime to
 - duration in sec
