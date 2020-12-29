@@ -49,9 +49,15 @@ body {
 i.icon-white {
     color: white;
 }
+
 /*** top page ***/
 #hero-header {
     margin-bottom: 10vh;
+}
+
+/*** signup page ***/
+#signup-form {
+    margin-top: 10vh;
 }
 
 /*** user page ***/
