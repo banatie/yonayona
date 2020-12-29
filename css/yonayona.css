@@ -49,6 +49,10 @@ body {
 i.icon-white {
     color: white;
 }
+/*** top page ***/
+#hero-header {
+    margin-bottom: 10vh;
+}
 
 /*** user page ***/
 #history {
