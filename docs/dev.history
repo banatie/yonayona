@@ -39,14 +39,17 @@ Listed at README.md
 signup/
 login/
 logout/
+report/user
 
 ### Communicate
-send/
+message/send/
 
 ### View
-message/view/<message_id>
-message/delete/<message_id>
+conversation/view/<message_id>
+conversation/delete/<message_id>
 
+### Page
+index/
 
 ## Create Django App
 
