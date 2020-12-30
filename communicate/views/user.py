@@ -3,9 +3,20 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
+from ..models import Conversation
 
 def index(request):
-    return render(request, 'communicate/index.html', {})
+    context = {}
+    if request.user.is_authenticated:
+        try:
+            conversations = Conversation.objects.filter(is_active=True, users__username=request.user.username)
+            if len(conversations) == 1:
+                conversation_id = conversations[0].id
+                context = {'conversation_id' : conversation_id}
+        except Conversation.DoesNotExist:
+            pass
+
+    return render(request, 'communicate/index.html', context)
 
 def about(request):
     context = {}

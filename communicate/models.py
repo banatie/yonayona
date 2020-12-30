@@ -4,13 +4,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Conversation(models.Model):
+    is_active = models.BooleanField(default=True)
     users = models.ManyToManyField(User, max_length=2)
     datetime_start = models.DateTimeField(auto_now_add=True)
     datetime_end = models.DateTimeField(auto_now=True)
-    duration_in_sec = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(24*60*60)])
-
-    def __str__(self):
-        return f'{self.user1} to {self.user2} @ {self.datetime_start} to {self.datetime_end}'
+    duration_in_sec = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(24*60*60)], default=0)
 
 class Message(models.Model):
     user_from = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_from')
