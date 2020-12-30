@@ -9,13 +9,10 @@ from ..models import Conversation
 def index(request):
     context = {}
     if request.user.is_authenticated:
-        try:
-            conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
-            if len(conversations) == 1:
-                conversation_id = conversations[0].id
-                context = {'conversation_id' : conversation_id}
-        except Conversation.DoesNotExist:
-            pass
+        conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
+        if len(conversations) == 1:
+            conversation_id = conversations[0].id
+            context = {'conversation_id' : conversation_id}
 
     return render(request, 'communicate/index.html', context)
 
