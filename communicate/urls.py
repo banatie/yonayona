@@ -9,9 +9,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     #path('', views.index, name='user_top_page'),
     path('about/', views.about, name='about'),
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
+    path('signup/', views.user_signup, name='signup'),
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
     path('report/user', views.report_user, name='report_user'),
     # Message
     path('message/send', views.add_message, name='add_message'),
