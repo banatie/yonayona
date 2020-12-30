@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
@@ -60,12 +60,12 @@ def user_login(request):
     #  render to index view
     context = {}
     return render(request, 'communicate/index.html', context)
+
 def user_logout(request):
-    # logged in
-    # logout
-    #  render to index.html
-    context = {}
-    return render(request, 'communicate/index.html', context)
+    if request.user.is_authenticated:
+        logout(request)
+    return render(request, 'communicate/index.html', {})
+
 def report_user(request):
     # Add Welcome Message
     context = {}
