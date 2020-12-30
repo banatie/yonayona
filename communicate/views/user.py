@@ -61,15 +61,15 @@ def user_login(request):
                 context = {'error_message' : 'Invalid Login Information'}
                 return render(request, 'communicate/index.html', context)
 
-            # user exists
-            try:
-                user = User.objects.get(username=email)
-            except User.DoesNotExist:
+            # authenticate
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return render(request, 'communicate/index.html', {})
+            else:
+                # user exists
                 context = {'error_message' : 'Invalid Login Information'}
                 return render(request, 'communicate/index.html', context)
-
-            login(request, user)
-            return render(request, 'communicate/index.html', {})
         else:
             pass
 
