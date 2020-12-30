@@ -11,11 +11,9 @@ def index(request):
     #  render to user.html
     return render(request, 'communicate/index.html', {})
 
-
 def about(request):
     context = {}
     return render(request, 'communicate/about.html', context)
-
 
 def user_signup(request):
     if request.user.is_authenticated:
@@ -49,17 +47,37 @@ def user_signup(request):
         else:
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=email, email=email, password=password)
             login(request, user)
-            return render(request, 'todolist/index.html', {})
+            return render(request, 'communicate/index.html', {})
 
 def user_login(request):
     # POST
-    # not logged in
-    # user exists
-    #  render to index.html
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            # not logged in
+            try:
+                email = request.POST['email']
+                password = request.POST['password']
+            except KeyError:
+                context = {'error_message' : 'Invalid Login Information'}
+                return render(request, 'communicate/index.html', context)
+
+            # user exists
+            try:
+                user = User.objects.get(username=email)
+            except User.DoesNotExist:
+                context = {'error_message' : 'Invalid Login Information'}
+                return render(request, 'communicate/index.html', context)
+
+            login(request, user)
+            return render(request, 'communicate/index.html', {})
+        else:
+            pass
+
+        #  render to index.html
+        return render(request, 'communicate/index.html', {})
     # GET
-    #  render to index view
-    context = {}
-    return render(request, 'communicate/index.html', context)
+    if request.method == 'GET':
+        return render(request, 'communicate/index.html', {})
 
 def user_logout(request):
     if request.user.is_authenticated:
