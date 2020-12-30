@@ -1,20 +1,18 @@
   <!DOCTYPE html>
   <html>
     <head>
-      <!--Import Google Icon Font-->
+      {% load static %}
+      <!--css-->
+      <link type="text/css" rel="stylesheet" href="{% static 'communicate/css/materialize.min.css' %}" media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'communicate/css/yonayona.css' %}"/>
+      <!--js-->
+      <!--images-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-      <!--Let browser know website is optimized for mobile-->
-      <!--Import css-->
-      <link type="text/css" rel="stylesheet" href="css/yonayona.css"/>
-      <!--Icon and Favicon-->
+      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'communicate/images/favicon/apple-touch-icon.png' %}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'communicate/images/favicon/favicon-32x32.png' %}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'communicate/images/favicon/favicon-16x16.png' %}">
+      <link rel="manifest" href="{% static 'communicate/images/favicon/site.webmanifest' %}">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
-      <link rel="manifest" href="./images/favicon/site.webmanifest">
     </head>
 
     <body>
@@ -43,6 +41,6 @@
         <!--ボディ-->
       </div>
       <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="{% static 'communicate/js/materialize.min.js' %}"></script>
     </body>
   </html>
