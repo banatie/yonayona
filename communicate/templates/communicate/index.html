@@ -109,92 +109,83 @@
             </div>
             <div class="col s9">
               <div class="container">
-                <div id="history">
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                  <p class="conversation left-align">こんばんは</p>
-                  <p class="conversation right-align">こんばんは</p>
-                </div>
-                <div id="message-sender col s12">
-                  <!--"{% url 'communicate:add_message' %}"-->
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <textarea id="message" class="white-text" autofocus></textarea>
+                {% if conversation_id %}
+                  <div id="history">
+                  </div>
+                  <div id="message-sender col s12">
+                    <!--"{% url 'communicate:add_message' %}"-->
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="message" class="white-text" autofocus></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col offset-s11 s2">
+                        <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col offset-s11 s2">
-                      <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
-                    </div>
-                  </div>
+
+                  <!--websocket-->
+                  <!--{{ value|json_script:"<id>" }}-->
+                  {{ conversation_id|json_script:"conversation_id" }}
+                  <script>
+                    /* create websocket connection */
+                    const conversation_id = JSON.parse(document.getElementById('conversation_id').textContent);
+                    const communicationSocket = new WebSocket(
+                      'ws://'
+                      + window.location.host
+                      + '/ws/communicate/'
+                      + conversation_id
+                      + '/'
+                    );
+
+                    /* receive message */
+                    communicationSocket.onmessage = function(e) {
+                      const data = JSON.parse(e.data);
+
+                      var para = document.createElement('p');
+                      para.classList.add('conversation');
+                      para.classList.add('right-align');
+                      var node = document.createTextNode(data.message);
+                      para.appendChild(node);
+
+                      var element = document.getElementById('history');
+                      element.appendChild(para);
+                    };
+
+                    /* connection error */
+                    communicationSocket.onclose = function(e) {
+                      console.log('error');
+                    };
+
+                    /* click submit at enter */
+                    document.querySelector('#message').onkeyup = function(e) {
+                      if (e.keyCode == 13) { // enter, or return
+                        document.querySelector('#send').click();
+                      }
+                    };
+
+                    /* send message */
+                    document.querySelector('#send').onclick = function(e) {
+                      const messageDom = document.querySelector('#message');
+                      const message = messageDom.value;
+                      /* send */
+                      communicationSocket.send(JSON.stringify({
+                        'message' : message
+                      }));
+                      /* clear input */
+                      messageDom.value = '';
+                    };
+                  </script>
+                  <!--websocket-->
                 </div>
-
-                <!--websocket-->
-                <!--{{ value|json_script:"<id>" }}-->
-                {{ user.username|json_script:"username" }}
-                <script>
-                  /* create websocket connection */
-                  const userName = JSON.parse(document.getElementById('username').textContent);
-                  const communicationSocket = new WebSocket(
-                    'ws://'
-                    + window.location.host
-                    + '/ws/communicate/'
-                    //+ userName
-                    + 'hi'
-                    + '/'
-                  );
-
-                  /* receive message */
-                  communicationSocket.onmessage = function(e) {
-                    const data = JSON.parse(e.data);
-
-                    var para = document.createElement('p');
-                    para.classList.add('conversation');
-                    para.classList.add('right-align');
-                    var node = document.createTextNode(data.message);
-                    para.appendChild(node);
-
-                    var element = document.getElementById('history');
-                    element.appendChild(para);
-                  };
-
-                  /* connection error */
-                  communicationSocket.onclose = function(e) {
-                    console.log('error');
-                  };
-
-                  /* click submit at enter */
-                  document.querySelector('#message').onkeyup = function(e) {
-                    if (e.keyCode == 13) { // enter, or return
-                      document.querySelector('#send').click();
-                    }
-                  };
-
-                  /* send message */
-                  document.querySelector('#send').onclick = function(e) {
-                    const messageDom = document.querySelector('#message');
-                    const message = messageDom.value;
-                    /* send */
-                    communicationSocket.send(JSON.stringify({
-                      'message' : message
-                    }));
-                    /* clear input */
-                    messageDom.value = '';
-                  };
-                </script>
-                <!--websocket-->
-
-              </div>
+              {% else %}
+                <form action="{% url 'communicate:start_conversation' %}" method="post">
+                  {% csrf_token %}
+                  <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">Start</button>
+                </form>
+              {% endif %}
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ urlpatterns = [
     # Message
     path('message/send', views.add_message, name='add_message'),
     # Conversation
+    path('conversation/start/', views.start_conversation, name='start_conversation'),
     path('conversation/<int:conversation_id>/view/', views.view_conversation, name='conversation_view'),
     path('conversation/<int:conversation_id>/delete/', views.delete_conversation, name='conversation_delete'),
 ]
