@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 def add_message(request):
     context = {}
-    return render(request, 'communicate/user.html', context)
+    return render(request, 'communicate/index.html', context)
