@@ -9,13 +9,21 @@ def start_conversation(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('communicate:index'))
 
-    conversations = None
-    try:
-        conversations = Conversation.objects.filter(is_active=True, users__in=request.user)
-    except:
-        pass
+    conversations = Conversation.objects.filter(is_active=True, users__username=request.user.username)
 
-    if conversations is None:
+    if len(conversations) > 0:
+        # already in active conversation
+        pass
+    else:
+        conversations = Conversation.objects.filter(is_active=True)
+        for conversation in conversations:
+            if len(conversation.users) == 1:
+                # opened active conversation exists
+                conversation.users.add(request.user)
+                conversation.save()
+                return HttpResponseRedirect(reverse('communicate:index'))
+
+        # no opened active conversation
         conversation = Conversation.objects.create()
         conversation.users.add(request.user)
         conversation.save()
