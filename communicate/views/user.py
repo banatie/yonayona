@@ -9,6 +9,9 @@ def index(request):
         return render(request, 'communicate/index.html', context)
     else:
         return render(request, 'communicate/user.html', context)        
+def about(request):
+    context = {}
+    return render(request, 'communicate/about.html', context)
 def signup(request):
     context = {}
     return render(request, 'communicate/signup.html', context)
