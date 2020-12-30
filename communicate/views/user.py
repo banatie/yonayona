@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def top_page(request):
-    return HttpResponse('top_page view by Eiji')
+def index(request):
+    return HttpResponse('index view by Eiji')
 def signup(request):
     return HttpResponse('signup view by Eiji')
 def login(request):

@@ -6,7 +6,7 @@ from . import views
 app_name = 'communicate'
 urlpatterns = [
     # User Account
-    path('', views.top_page, name='top_page'),
+    path('', views.index, name='index'),
     #path('', views.index, name='user_top_page'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
