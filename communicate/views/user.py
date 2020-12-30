@@ -3,12 +3,22 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('index view by Eiji')
+    context = {}
+    if True:
+        # Logged in
+        return render(request, 'communicate/index.html', context)
+    else:
+        return render(request, 'communicate/user.html', context)        
 def signup(request):
-    return HttpResponse('signup view by Eiji')
+    context = {}
+    return render(request, 'communicate/signup.html', context)
 def login(request):
-    return HttpResponse('login view by Eiji')
+    context = {}
+    return render(request, 'communicate/user.html', context)
 def logout(request):
-    return HttpResponse('logout view by Eiji')
+    context = {}
+    return render(request, 'communicate/index.html', context)
 def report_user(request):
-    return HttpResponse('report_user view by Eiji')
+    # Add Welcome Message
+    context = {}
+    return render(request, 'communicate/user.html', context)

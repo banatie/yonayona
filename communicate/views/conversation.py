@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 
 def view_conversation(request):
-    return HttpResponse('view_conversation view by Eiji')
+    context = {}
+    return render(request, 'communicate/user.html', context)
 def delete_conversation(request):
-    return HttpResponse('delete_conversation view by Eiji')
+    context = {}
+    return render(request, 'communicate/user.html', context)
