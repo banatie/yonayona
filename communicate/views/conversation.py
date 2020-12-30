@@ -9,7 +9,7 @@ def start_conversation(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('communicate:index'))
 
-    conversations = Conversation.objects.filter(is_active=True, users__username=request.user.username)
+    conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
 
     if len(conversations) > 0:
         # already in active conversation
