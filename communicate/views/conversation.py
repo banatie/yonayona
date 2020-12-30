@@ -17,7 +17,7 @@ def start_conversation(request):
     else:
         conversations = Conversation.objects.filter(is_active=True)
         for conversation in conversations:
-            if len(conversation.users) == 1:
+            if len(conversation.users.all()) == 1:
                 # opened active conversation exists
                 conversation.users.add(request.user)
                 conversation.save()
