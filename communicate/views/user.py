@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -57,7 +58,7 @@ def user_signup(request):
             # create user and login
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=email, email=email, password=password)
             login(request, user)
-            return render(request, 'communicate/index.html', {})
+            return HttpResponseRedirect(reverse('communicate:index'))
 
 def user_login(request):
     # GET
@@ -83,7 +84,7 @@ def user_login(request):
             # login
             if user is not None:
                 login(request, user)
-                return render(request, 'communicate/index.html', {})
+                return HttpResponseRedirect(reverse('communicate:index'))
             else:
                 # user exists
                 context = {'error_message' : 'Invalid Login Information'}
@@ -92,7 +93,7 @@ def user_login(request):
 def user_logout(request):
     if request.user.is_authenticated:
         logout(request)
-    return render(request, 'communicate/index.html', {})
+    return HttpResponseRedirect(reverse('communicate:index'))
 
 def report_user(request):
     # Add Welcome Message
