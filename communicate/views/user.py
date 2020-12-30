@@ -9,7 +9,7 @@ def index(request):
     #  render to index.html
     # Logged In
     #  render to user.html
-    return render(request, 'communicate/user.html', {})
+    return render(request, 'communicate/index.html', {})
 
 
 def about(request):
