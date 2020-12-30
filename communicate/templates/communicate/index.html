@@ -39,7 +39,8 @@
             <p>名前も顔もまったくわからない誰かと、よなよな話してみませんか。</p>
           </div>
           <div class="row">
-            <form class="col s12" action="#">
+            <form class="col s12" action="{% url 'communicate:login' %}" method="post">
+              {% csrf_token %}
               <div class="row">
                 <div class="input-field col s8">
                   <i class="material-icons prefix icon-white">email</i>
