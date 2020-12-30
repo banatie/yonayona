@@ -5,10 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
-    # Not Logged In
-    #  render to index.html
-    # Logged In
-    #  render to user.html
     return render(request, 'communicate/index.html', {})
 
 def about(request):
@@ -24,8 +20,10 @@ def user_signup(request):
     # GET
     if request.method == 'GET':
         return render(request, 'communicate/signup.html', {})
+
     # POST
     if request.method == 'POST':
+        # get parameters
         try:
             first_name = request.POST['first_name']
             last_name = request.POST['last_name']
@@ -34,26 +32,33 @@ def user_signup(request):
         except KeyError:
             context = {'error_message' : 'Some form item is not found'}
             return render(request, 'communicate/signup.html', context)
-        # valid password
+
+        # no duplicate user
         user = None
         try:
             user = User.objects.get(username=email)
         except User.DoesNotExist:
             pass
-
         if user is not None:
             context = {'error_message' : 'The Email is already taken'}
             return render(request, 'communicate/signup.html', context)
         else:
+            # create user and login
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=email, email=email, password=password)
             login(request, user)
             return render(request, 'communicate/index.html', {})
 
 def user_login(request):
+    # GET
+    if request.method == 'GET':
+        return render(request, 'communicate/index.html', {})
+
     # POST
     if request.method == 'POST':
-        if not request.user.is_authenticated:
-            # not logged in
+        if request.user.is_authenticated:
+            return render(request, 'communicate/index.html', {})
+        else:
+            # get parameters
             try:
                 email = request.POST['email']
                 password = request.POST['password']
@@ -63,6 +68,8 @@ def user_login(request):
 
             # authenticate
             user = authenticate(request, username=email, password=password)
+
+            # login
             if user is not None:
                 login(request, user)
                 return render(request, 'communicate/index.html', {})
@@ -70,14 +77,6 @@ def user_login(request):
                 # user exists
                 context = {'error_message' : 'Invalid Login Information'}
                 return render(request, 'communicate/index.html', context)
-        else:
-            pass
-
-        #  render to index.html
-        return render(request, 'communicate/index.html', {})
-    # GET
-    if request.method == 'GET':
-        return render(request, 'communicate/index.html', {})
 
 def user_logout(request):
     if request.user.is_authenticated:
