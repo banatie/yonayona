@@ -160,8 +160,12 @@
                       var message_node = document.createTextNode(message);
                       message_p.appendChild(message_node);
 
+                      /* add to history */
                       var history = document.getElementById('history');
                       history.appendChild(message_p);
+
+                      /* scroll down */
+                      history.scrollTop = history.scrollHeight;
                     };
 
                     /* connection error */
