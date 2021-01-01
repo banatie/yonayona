@@ -148,20 +148,20 @@
                       const message  =data.message;
 
                       /* create the message dom */
-                      var para = document.createElement('p');
-                      para.classList.add('conversation');
+                      var message_p = document.createElement('p');
+                      message_p.classList.add('conversation');
 
                       /* align according to the sender */
                       if (sender == "{{ user.username }}") {
-                        para.classList.add('right-align');  
+                        message_p.classList.add('right-align');  
                       } else {
-                        para.classList.add('left-align');
+                        message_p.classList.add('left-align');
                       }
-                      var node = document.createTextNode(data.message);
-                      para.appendChild(node);
+                      var message_node = document.createTextNode(message);
+                      message_p.appendChild(message_node);
 
-                      var element = document.getElementById('history');
-                      element.appendChild(para);
+                      var history = document.getElementById('history');
+                      history.appendChild(message_p);
                     };
 
                     /* connection error */
