@@ -26,6 +26,7 @@ class CommunicateConsumer(WebsocketConsumer):
     def receive(self, text_data):
         # receive message from websocket
         text_data_json = json.loads(text_data)
+        username = text_data_json['username']
         message = text_data_json['message']
 
         # send messsage to group
@@ -33,16 +34,19 @@ class CommunicateConsumer(WebsocketConsumer):
             self.group_name,
             {
                 'type' : 'conversation_message',
+                'username': username,
                 'message' : message
             }
         )
 
     def conversation_message(self, event):
         # receive message from group
+        username = event['username']
         message = event['message']
 
         # send message to websocket
         self.send(text_data=json.dumps({
+            'username': username,
             'message' : message
         }))
         

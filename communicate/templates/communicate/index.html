@@ -143,9 +143,20 @@
                     communicationSocket.onmessage = function(e) {
                       const data = JSON.parse(e.data);
 
+                      /* extract data */
+                      const sender = data.username;
+                      const message  =data.message;
+
+                      /* create the message dom */
                       var para = document.createElement('p');
                       para.classList.add('conversation');
-                      para.classList.add('right-align');
+
+                      /* align according to the sender */
+                      if (sender == "{{ user.username }}") {
+                        para.classList.add('right-align');  
+                      } else {
+                        para.classList.add('left-align');
+                      }
                       var node = document.createTextNode(data.message);
                       para.appendChild(node);
 
@@ -167,10 +178,15 @@
 
                     /* send message */
                     document.querySelector('#send').onclick = function(e) {
+                      /* username */
+                      const username = "{{ user.username }}";
+                      /* message */
                       const messageDom = document.querySelector('#message');
                       const message = messageDom.value;
+
                       /* send */
                       communicationSocket.send(JSON.stringify({
+                        'username': username,
                         'message' : message
                       }));
                       /* clear input */
