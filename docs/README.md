@@ -58,14 +58,14 @@ People who have PC and are awake for nothing at midnight
 ## 4. Schedule
 Task  | Start Date | End Date | Expected Hours | Actual Hours
 ------- |-------|------------|----------|--------------
-Design  | 12/26 | 12/28 | 3h | 
-Collect Materials  | 12/26 | 12/28 | 3h | 
-css Framework tutorial  | 12/26 | 12/28 | 3h | 
-Front End Development  | 12/26 | 12/28 | 3h | 
-URI Architecture  | 12/28 | 12/31 | 3h | 
-DB Architecture  | 12/28 | 12/31 | 3h | 
-Create Django Project  | 12/28 | 12/31 | 3h | 
-Backend Development  | 12/28 | 12/31 | 3h | 
+Design  | 12/26 | 12/28 | 3h | 5h
+Collect Materials  | 12/26 | 12/28 | 3h | 3h
+css Framework tutorial  | 12/26 | 12/28 | 3h | 1h
+Front End Development  | 12/26 | 12/28 | 3h | 15h
+URI Architecture  | 12/28 | 12/31 | 3h | 1h
+DB Architecture  | 12/28 | 12/31 | 3h | 3h
+Create Django Project  | 12/28 | 12/31 | 3h | 20min
+Backend Development  | 12/28 | 12/31 | 3h | 15h+
 Create Flow Chart  | 12/28 | 12/31 | 3h | 
 Local Test for All Flow  | 12/28 | 12/31 | 3h | 
 Deployment  | 1/1 | 1/2 | 3h | 
@@ -162,6 +162,7 @@ TBA
 - materializecss
 - Ansible
 - docstring
+- [websocket](https://channels.readthedocs.io/en/stable/tutorial/part_1.html)
 
 ## 7. SEO
 ### titleタグ
