@@ -1,6 +1,10 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from django.contrib.auth.models import User
+
+from ..models import Message
+from ..models import Conversation
 
 
 class CommunicateConsumer(WebsocketConsumer):
@@ -28,6 +32,19 @@ class CommunicateConsumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         username = text_data_json['username']
         message = text_data_json['message']
+
+        # save to db
+        user = User.objects.get(username=username)
+        #user = users[0]
+        conversation = Conversation.objects.get(id=self.conversation_id)
+
+        """
+        try:
+            Message(user_from=user, conversation_id=self.group_name, text=message).save()
+        except:
+            pass
+        """
+        Message(user_from=user, conversation_id=conversation, text=message).save()   
 
         # send messsage to group
         async_to_sync(self.channel_layer.group_send)(

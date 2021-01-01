@@ -11,8 +11,7 @@ class Conversation(models.Model):
     duration_in_sec = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(24*60*60)], default=0)
 
 class Message(models.Model):
-    user_from = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_from')
-    user_to = models.OneToOneField(User, on_delete=models.PROTECT, related_name='user_to')
+    user_from = models.ForeignKey(User, on_delete=models.CASCADE)
     conversation_id = models.ForeignKey(Conversation, on_delete=models.CASCADE)
     datetime_created = models.DateTimeField(auto_now_add=True)
     delete_by_user_from = models.BooleanField(default=False)
