@@ -141,6 +141,7 @@ Materialize@1.0.0
 Postresql
 
 ### Server
+redis6.0.6
 Heroku Hobby plan($7/month)
 
 ### Naming Convention
