@@ -140,7 +140,6 @@
                       </div>
                     </div>
                   </div>
-                  <!--websocket-->
                   <!--{{ value|json_script:"<id>" }}-->
                   {{ conversation_id|json_script:"conversation_id" }}
                   <script>
@@ -151,6 +150,7 @@
                       var instances = M.Modal.init(elems, options);
                     });
 
+                    /* websocket */
                     /* create websocket connection */
                     const conversation_id = JSON.parse(document.getElementById('conversation_id').textContent);
                     const communicationSocket = new WebSocket(
