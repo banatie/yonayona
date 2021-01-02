@@ -30,6 +30,15 @@ def start_conversation(request):
 
     return HttpResponseRedirect(reverse('communicate:index'))
 
+def end_conversation(request):
+    # update conversation
+    conversation_id = request.POST.get('conversation_id')
+    conversation = Conversation.objects.get(id=conversation_id, is_active=True)
+    conversation.is_active = False
+    conversation.save()
+
+    return HttpResponseRedirect(reverse('communicate:index'))
+
 def view_conversation(request):
     context = {}
     return render(request, 'communicate/index.html', context)

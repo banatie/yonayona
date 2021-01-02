@@ -120,12 +120,18 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col offset-s11 s2">
+                      <div class="col offset-s7 s3">
+                        <form action="{% url 'communicate:end_conversation' %}" method="post">
+                          {% csrf_token %}
+                          <input type="hidden" name="conversation_id" value="{{ conversation_id }}">
+                          <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を終了</button>
+                        </form>
+                      </div>
+                      <div class="col s2">
                         <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
                       </div>
                     </div>
                   </div>
-
                   <!--websocket-->
                   <!--{{ value|json_script:"<id>" }}-->
                   {{ conversation_id|json_script:"conversation_id" }}

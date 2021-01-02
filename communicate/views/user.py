@@ -9,6 +9,7 @@ from ..models import Conversation
 def index(request):
     context = {}
     if request.user.is_authenticated:
+        # send active conversation_id
         conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
         if len(conversations) == 1:
             conversation_id = conversations[0].id
