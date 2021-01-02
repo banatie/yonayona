@@ -120,14 +120,23 @@
                     </div>
                     <div class="row">
                       <div class="col offset-s7 s3">
-                        <form action="{% url 'communicate:end_conversation' %}" method="post">
-                          {% csrf_token %}
-                          <input type="hidden" name="conversation_id" value="{{ conversation_id }}">
-                          <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を終了</button>
-                        </form>
+                        <!--モーダル-->
+                        <!-- modal trigger -->
+                        <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
+                        <!-- end conversation modal -->
+                        <div id="modal-end-conversation" class="modal">
+                          <div class="modal-content black-text">
+                            <h4>この出会いにさようならをしますか？</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                            <a href="{% url 'communicate:end_conversation' conversation_id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                          </div>
+                        </div>
+                        <!--モーダル-->
                       </div>
                       <div class="col s2">
-                        <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
+                        <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
                       </div>
                     </div>
                   </div>
@@ -135,6 +144,13 @@
                   <!--{{ value|json_script:"<id>" }}-->
                   {{ conversation_id|json_script:"conversation_id" }}
                   <script>
+                    /* initialize modals */
+                    document.addEventListener('DOMContentLoaded', function() {
+                      const options = '';
+                      var elems = document.querySelectorAll('.modal');
+                      var instances = M.Modal.init(elems, options);
+                    });
+
                     /* create websocket connection */
                     const conversation_id = JSON.parse(document.getElementById('conversation_id').textContent);
                     const communicationSocket = new WebSocket(
@@ -187,7 +203,7 @@
                     };
 
                     /* send message */
-                    document.querySelector('#send').onclick = function(e) {
+                    document.querySelector('#btn-send-message').onclick = function(e) {
                       /* username */
                       const username = "{{ user.username }}";
                       /* message */

@@ -15,7 +15,7 @@ urlpatterns = [
     path('report/user', views.report_user, name='report_user'),
     # Conversation
     path('conversation/start/', views.start_conversation, name='start_conversation'),
-    path('conversation/end/', views.end_conversation, name='end_conversation'),
+    path('<int:conversation_id>/conversation/end/', views.end_conversation, name='end_conversation'),
     path('conversation/<int:conversation_id>/view/', views.view_conversation, name='conversation_view'),
     path('conversation/<int:conversation_id>/delete/', views.delete_conversation, name='conversation_delete'),
 ]

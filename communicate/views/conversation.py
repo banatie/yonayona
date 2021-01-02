@@ -30,10 +30,13 @@ def start_conversation(request):
 
     return HttpResponseRedirect(reverse('communicate:index'))
 
-def end_conversation(request):
+def end_conversation(request, conversation_id):
     # update conversation
-    conversation_id = request.POST.get('conversation_id')
-    conversation = Conversation.objects.get(id=conversation_id, is_active=True)
+    try:
+        conversation = Conversation.objects.get(id=conversation_id, is_active=True)
+    except Conversation.DoesNotExist:
+        return HttpResponseRedirect(reverse('communicate:index'))
+
     conversation.is_active = False
     conversation.save()
 
