@@ -58,10 +58,13 @@ i.icon-white {
     margin-bottom: 10vh;
 }
 .btn-conversation {
-    height: 60px;
+    height: 56px;
     line-height: 15px;
     font-size: 15px;
-    padding: 18px 28px;
+    padding: 17px 28px;
+}
+.btn-delete-conversation {
+    height: 56px;
 }
 .btn-sub-text {
     font-size: 11px;

@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 
 from ..models import Conversation
 
@@ -16,7 +17,7 @@ def index(request):
             context = {'conversation_id' : conversation_id}
 
         # send history conversations
-        inactive_conversations = Conversation.objects.filter(is_active=False, users__in=[request.user])
+        inactive_conversations = Conversation.objects.filter(Q(is_active=False) & Q(users__in=[request.user]) & ~Q(users_deleted__in=[request.user]))
         if len(inactive_conversations) > 0:
             # format
             history_conversations = []
@@ -25,6 +26,7 @@ def index(request):
                 duration = str(conversation.datetime_end - conversation.datetime_start)
                 duration = duration.split('.')[0]
                 history_conversations.append({
+                    'id' : conversation.id,
                     'date' : date,
                     'duration' : duration
                 })

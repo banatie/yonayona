@@ -45,6 +45,24 @@ def end_conversation(request, conversation_id):
 def view_conversation(request):
     context = {}
     return render(request, 'communicate/index.html', context)
-def delete_conversation(request):
-    context = {}
-    return render(request, 'communicate/index.html', context)
+
+def delete_conversation(request, conversation_id):
+    # update conversation
+    try:
+        conversation = Conversation.objects.get(pk=conversation_id)
+    except Conversation.DoesNotExist:
+        return HttpResponseRedirect(reverse('communicate:index'))
+
+    if request.user not in conversation.users_deleted.all():
+        conversation.users_deleted.add(request.user)
+
+        for user in conversation.users.all():
+            if user in conversation.users_deleted.all():
+                continue
+            else:
+                # not all users deleted
+                conversation.save()
+        else:
+            # all users deleted
+            conversation.delete()
+    return HttpResponseRedirect(reverse('communicate:index'))
