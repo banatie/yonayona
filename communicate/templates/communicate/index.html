@@ -164,6 +164,9 @@
                     var messageHistory = document.getElementById('message-history');
                     messageHistory.scrollTop = messageHistory.scrollHeight;
 
+                    /* audio */
+                    var typewriterType = new Audio("{% static 'communicate/audio/typewriter_type.mp3' %}");
+
                     /* websocket */
                     /* create websocket connection */
                     const activeConversationId = JSON.parse(document.getElementById('active_conversation_id').textContent);
@@ -211,6 +214,7 @@
                             messageHistory.scrollTop = messageHistory.scrollHeight;
                             i++;
                           }
+                          typewriterType.play();
                           setTimeout(typeWriter, speed);
                         }
                       }
