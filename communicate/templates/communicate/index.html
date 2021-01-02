@@ -165,7 +165,7 @@
                     messageHistory.scrollTop = messageHistory.scrollHeight;
 
                     /* audio */
-                    var typewriterType = new Audio("{% static 'communicate/audio/typewriter_type.mp3' %}");
+                    //var typewriterType = new Audio("{% static 'communicate/audio/typewriter_type_short.mp3' %}");
 
                     /* websocket */
                     /* create websocket connection */
@@ -210,11 +210,11 @@
                             messageP.innerHTML += '<br>';
                             i += 4;
                           } else {
+                            //typewriterType.play();
                             messageP.innerHTML += message.charAt(i);
                             messageHistory.scrollTop = messageHistory.scrollHeight;
                             i++;
                           }
-                          typewriterType.play();
                           setTimeout(typeWriter, speed);
                         }
                       }
