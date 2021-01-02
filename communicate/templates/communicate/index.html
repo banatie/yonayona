@@ -90,12 +90,13 @@
           </p>
           {% if error_message %}<h3 class="red-text center-align"><strong>{{ error_message }}</strong></h3>{% endif %}
           <!--エラーメッセージ-->
+          <!--サイドバー-->
           <div class="row">
             <div class="col s3">
               {% for conversation in history_conversations %}
                 <div class="row">
                   <div class="col s12">
-                    <a href="#" class="waves-effect waves-light grey darken-4 btn-large btn-conversation">
+                    <a href="#" class="waves-effect waves-light grey darken-4 btn-large btn-oconversation">
                       <i class="material-icons left">chat_bubble</i>
                       {{ conversation.date }}<br>
                       <span class="btn-sub-text right">{{ conversation.duration }}</span>
@@ -104,8 +105,10 @@
                 </div>
               {% endfor %}
             </div>
+            <!--サイドバー-->
             <div class="col s9">
               <div class="container">
+                <!--交信中-->
                 {% if conversation_id %}
                   <div id="history">
                   </div>
@@ -202,11 +205,14 @@
                   </script>
                   <!--websocket-->
                 </div>
+              <!--交信中-->
               {% else %}
+                <!--交信外-->
                 <form action="{% url 'communicate:start_conversation' %}" method="post">
                   {% csrf_token %}
                   <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">Start</button>
                 </form>
+                <!--交信外-->
               {% endif %}
             </div>
           </div>
