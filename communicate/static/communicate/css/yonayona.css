@@ -75,11 +75,12 @@ i.icon-white {
 }
 #conversation-history {
     height: 80vh;
-    overflow: visible auto;
+    direction: rtl;
+    overflow: auto;
 }
 #message-history {
     height: 50vh;
-    overflow: visible auto;
+    overflow: auto;
 }
 #message-sender {
     height: 15vh;
