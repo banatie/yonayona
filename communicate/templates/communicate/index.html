@@ -224,10 +224,18 @@
               <!--交信中-->
               {% else %}
                 <!--交信外-->
-                <form action="{% url 'communicate:start_conversation' %}" method="post">
-                  {% csrf_token %}
-                  <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">Start</button>
-                </form>
+                <div class="row" id="user-top">
+                  <div class="col offset-s4 s4">
+                    <form action="{% url 'communicate:start_conversation' %}" method="post">
+                      {% csrf_token %}
+                      <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
+                    </form>
+                  </div>
+                </div>
+                <h5>
+                よなよな起きている人に、悪いひとはいません<br>
+                ヨルの森で、素敵ではかない出会いをしてみませんか
+                </h5>
                 <!--交信外-->
               {% endif %}
             </div>
