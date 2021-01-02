@@ -62,6 +62,7 @@ def delete_conversation(request, conversation_id):
             else:
                 # not all users deleted
                 conversation.save()
+                break
         else:
             # all users deleted
             conversation.delete()
