@@ -87,6 +87,7 @@
           </div>
           <!--ナビゲーションヘッダ-->
           <!--エラーメッセージ-->
+          </p>
           {% if error_message %}<h3 class="red-text center-align"><strong>{{ error_message }}</strong></h3>{% endif %}
           <!--エラーメッセージ-->
           <div class="row">
@@ -145,7 +146,7 @@
 
                       /* extract data */
                       const sender = data.username;
-                      const message = data.message;
+                      const message = data.message.replaceAll("\n", "<br />");
 
                       /* create the message dom */
                       var message_p = document.createElement('p');
@@ -157,8 +158,8 @@
                       } else {
                         message_p.classList.add('left-align');
                       }
-                      var message_node = document.createTextNode(message);
-                      message_p.appendChild(message_node);
+                      /* add message */
+                      message_p.innerHTML = message;
 
                       /* add to history */
                       var history = document.getElementById('history');
