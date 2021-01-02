@@ -118,9 +118,9 @@
                   <div id="message-history">
                     {% for message in history_messages %}
                       {% if message.user_from.username == user.username %}
-                        <p class="conversation right-align">{{ message.text }}</p>
+                        <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
                       {% else %}
-                        <p class="conversation left-align">{{ message.text }}</p>
+                        <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
                       {% endif %}
                     {% endfor %}
                   </div>
@@ -183,6 +183,7 @@
                       /* extract data */
                       const sender = data.username;
                       const message = data.message.replaceAll("\n", "<br>");
+                      //var message = "{{ data.message|linebreaksbr }}";
 
                       /* create the message dom */
                       var message_p = document.createElement('p');
@@ -194,10 +195,28 @@
                       } else {
                         message_p.classList.add('left-align');
                       }
-                      /* add to message_history */
-                      message_p.innerHTML = message;
+
+                      //message_p.innerHTML = message;
                       var message_history = document.getElementById('message-history');
                       message_history.appendChild(message_p);
+
+                      /* add to message_history with typewriter effect */
+                      var i = 0;
+                      const speed = 65; // milliseconds
+                      function typeWriter() {
+                        if (i < message.length) {
+                          if (message.slice(i, i+4) == '<br>') {
+                            message_p.innerHTML += '<br>';
+                            i += 4;
+                          } else {
+                            message_p.innerHTML += message.charAt(i);
+                            message_history.scrollTop = message_history.scrollHeight;
+                            i++;
+                          }
+                          setTimeout(typeWriter, speed);
+                        }
+                      }
+                      typeWriter();
 
                       /* scroll down */
                       message_history.scrollTop = message_history.scrollHeight;
