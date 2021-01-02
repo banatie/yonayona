@@ -114,7 +114,7 @@
             <div class="col s9">
               <div class="container">
                 <!--交信中-->
-                {% if conversation_id %}
+                {% if active_conversation_id %}
                   <div id="message-history">
                   </div>
                   <div id="message-sender col s12">
@@ -135,7 +135,7 @@
                           </div>
                           <div class="modal-footer">
                             <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
-                            <a href="{% url 'communicate:end_conversation' conversation_id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                            <a href="{% url 'communicate:end_conversation' active_conversation_id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
                           </div>
                         </div>
                         <!--モーダル-->
@@ -146,7 +146,7 @@
                     </div>
                   </div>
                   <!--{{ value|json_script:"<id>" }}-->
-                  {{ conversation_id|json_script:"conversation_id" }}
+                  {{ active_conversation_id|json_script:"active_conversation_id" }}
                   <script>
                     /* initialize modals */
                     document.addEventListener('DOMContentLoaded', function() {
@@ -157,12 +157,12 @@
 
                     /* websocket */
                     /* create websocket connection */
-                    const conversation_id = JSON.parse(document.getElementById('conversation_id').textContent);
+                    const active_conversation_id = JSON.parse(document.getElementById('active_conversation_id').textContent);
                     const communicationSocket = new WebSocket(
                       'ws://'
                       + window.location.host
                       + '/ws/communicate/'
-                      + conversation_id
+                      + active_conversation_id
                       + '/'
                     );
 

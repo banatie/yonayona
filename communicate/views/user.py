@@ -14,9 +14,9 @@ def index(request):
         conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
         if len(conversations) == 1:
             conversation_id = conversations[0].id
-            context = {'conversation_id' : conversation_id}
+            context = {'active_conversation_id' : conversation_id}
 
-        # send history conversations
+        # send inactive conversations
         inactive_conversations = Conversation.objects.filter(Q(is_active=False) & Q(users__in=[request.user]) & ~Q(users_deleted__in=[request.user]))
         if len(inactive_conversations) > 0:
             # format
