@@ -72,7 +72,7 @@ i.icon-white {
 /*** user page ***/
 #history {
     height: 50vh;
-    overflow: visible scroll;
+    overflow: visible auto;
 }
 #message-sender {
     height: 15vh;
