@@ -73,6 +73,10 @@ i.icon-white {
 #user-top {
     margin-top: 15vh;
 }
+#conversation-history {
+    height: 80vh;
+    overflow: visible auto;
+}
 #message-history {
     height: 50vh;
     overflow: visible auto;
