@@ -175,7 +175,7 @@
 
                     /* click submit at enter */
                     document.querySelector('#message').onkeyup = function(e) {
-                      if (e.keyCode == 13) { // enter, or return
+                      if (e.ctrlKey && e.keyCode == 13) { // enter, or return
                         document.querySelector('#send').click();
                       }
                     };
