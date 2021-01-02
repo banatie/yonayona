@@ -110,7 +110,7 @@
               <div class="container">
                 <!--交信中-->
                 {% if conversation_id %}
-                  <div id="history">
+                  <div id="message-history">
                   </div>
                   <div id="message-sender col s12">
                     <div class="row">
@@ -182,12 +182,12 @@
                       /* add message */
                       message_p.innerHTML = message;
 
-                      /* add to history */
-                      var history = document.getElementById('history');
-                      history.appendChild(message_p);
+                      /* add to message_history */
+                      var message_history = document.getElementById('message-history');
+                      message_history.appendChild(message_p);
 
                       /* scroll down */
-                      history.scrollTop = history.scrollHeight;
+                      message_history.scrollTop = message_history.scrollHeight;
                     };
 
                     /* connection error */
