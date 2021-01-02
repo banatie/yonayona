@@ -91,9 +91,7 @@ i.icon-white {
 #message {
     font-size: 18px;
     border: none;
-    border-bottom: 1px solid;
-    border-color: white;
-    height: 7rem;
+    height: 5rem;
 }
 #message:focus {
     border-bottom: 2px solid;
