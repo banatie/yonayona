@@ -36,6 +36,9 @@ body {
     font-family: "makinas-4";
     color: white;
 }
+.btn-flat, .btn, .btn-small, .btn-large {
+    font-family: "makinas-4";
+}
 
 /* text color */
 .input-field [type=text],[type=email],[type=password] {
