@@ -20,7 +20,7 @@ def index(request):
         if len(inactive_conversations) > 0:
             # format
             history_conversations = []
-            for conversation in inactive_conversations:
+            for conversation in reversed(inactive_conversations):
                 date = conversation.datetime_start.strftime('%Y-%m-%d')
                 duration = str(conversation.datetime_end - conversation.datetime_start)
                 duration = duration.split('.')[0]
