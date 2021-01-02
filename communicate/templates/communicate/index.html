@@ -157,22 +157,21 @@
                   <script>
                     /* initialize modals */
                     document.addEventListener('DOMContentLoaded', function() {
-                      const options = '';
-                      var elems = document.querySelectorAll('.modal');
-                      var instances = M.Modal.init(elems, options);
+                      var modals = document.querySelectorAll('.modal');
+                      M.Modal.init(modals, '');
                     });
                     /* scroll down at refresh */
-                    var message_history = document.getElementById('message-history');
-                    message_history.scrollTop = message_history.scrollHeight;
+                    var messageHistory = document.getElementById('message-history');
+                    messageHistory.scrollTop = messageHistory.scrollHeight;
 
                     /* websocket */
                     /* create websocket connection */
-                    const active_conversation_id = JSON.parse(document.getElementById('active_conversation_id').textContent);
+                    const activeConversationId = JSON.parse(document.getElementById('active_conversation_id').textContent);
                     const communicationSocket = new WebSocket(
                       'ws://'
                       + window.location.host
                       + '/ws/communicate/'
-                      + active_conversation_id
+                      + activeConversationId
                       + '/'
                     );
 
@@ -186,31 +185,30 @@
                       //var message = "{{ data.message|linebreaksbr }}";
 
                       /* create the message dom */
-                      var message_p = document.createElement('p');
-                      message_p.classList.add('conversation');
+                      var messageP = document.createElement('p');
+                      messageP.classList.add('conversation');
 
                       /* align according to the sender */
                       if (sender == "{{ user.username }}") {
-                        message_p.classList.add('right-align');  
+                        messageP.classList.add('right-align');
                       } else {
-                        message_p.classList.add('left-align');
+                        messageP.classList.add('left-align');
                       }
 
-                      //message_p.innerHTML = message;
-                      var message_history = document.getElementById('message-history');
-                      message_history.appendChild(message_p);
+                      var messageHistory = document.getElementById('message-history');
+                      messageHistory.appendChild(messageP);
 
-                      /* add to message_history with typewriter effect */
+                      /* add to messageHistory with typewriter effect */
                       var i = 0;
                       const speed = 65; // milliseconds
                       function typeWriter() {
                         if (i < message.length) {
                           if (message.slice(i, i+4) == '<br>') {
-                            message_p.innerHTML += '<br>';
+                            messageP.innerHTML += '<br>';
                             i += 4;
                           } else {
-                            message_p.innerHTML += message.charAt(i);
-                            message_history.scrollTop = message_history.scrollHeight;
+                            messageP.innerHTML += message.charAt(i);
+                            messageHistory.scrollTop = messageHistory.scrollHeight;
                             i++;
                           }
                           setTimeout(typeWriter, speed);
@@ -219,7 +217,7 @@
                       typeWriter();
 
                       /* scroll down */
-                      message_history.scrollTop = message_history.scrollHeight;
+                      messageHistory.scrollTop = messageHistory.scrollHeight;
                     };
 
                     /* connection error */
