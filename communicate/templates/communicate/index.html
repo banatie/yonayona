@@ -116,6 +116,13 @@
                 <!--交信中-->
                 {% if active_conversation_id %}
                   <div id="message-history">
+                    {% for message in history_messages %}
+                      {% if message.user_from.username == user.username %}
+                        <p class="conversation right-align">{{ message.text }}</p>
+                      {% else %}
+                        <p class="conversation left-align">{{ message.text }}</p>
+                      {% endif %}
+                    {% endfor %}
                   </div>
                   <div id="message-sender col s12">
                     <div class="row">
@@ -154,6 +161,9 @@
                       var elems = document.querySelectorAll('.modal');
                       var instances = M.Modal.init(elems, options);
                     });
+                    /* scroll down at refresh */
+                    var message_history = document.getElementById('message-history');
+                    message_history.scrollTop = message_history.scrollHeight;
 
                     /* websocket */
                     /* create websocket connection */

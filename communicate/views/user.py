@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 
 from ..models import Conversation
+from ..models import Message
+
 
 def index(request):
     context = {}
@@ -14,7 +16,11 @@ def index(request):
         conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
         if len(conversations) == 1:
             conversation_id = conversations[0].id
-            context = {'active_conversation_id' : conversation_id}
+            context['active_conversation_id'] = conversation_id
+
+            # send message history
+            messages = Message.objects.filter(conversation_id=conversation_id).order_by('datetime_created')
+            context['history_messages'] = messages
 
         # send inactive conversations
         inactive_conversations = Conversation.objects.filter(Q(is_active=False) & Q(users__in=[request.user]) & ~Q(users_deleted__in=[request.user]))
