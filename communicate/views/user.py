@@ -15,6 +15,21 @@ def index(request):
             conversation_id = conversations[0].id
             context = {'conversation_id' : conversation_id}
 
+        # send history conversations
+        inactive_conversations = Conversation.objects.filter(is_active=False, users__in=[request.user])
+        if len(inactive_conversations) > 0:
+            # format
+            history_conversations = []
+            for conversation in inactive_conversations:
+                date = conversation.datetime_start.strftime('%Y-%m-%d')
+                duration = str(conversation.datetime_end - conversation.datetime_start)
+                duration = duration.split('.')[0]
+                history_conversations.append({
+                    'date' : date,
+                    'duration' : duration
+                })
+            context['history_conversations'] = history_conversations
+
     return render(request, 'communicate/index.html', context)
 
 def about(request):

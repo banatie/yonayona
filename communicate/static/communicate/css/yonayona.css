@@ -54,6 +54,15 @@ i.icon-white {
 #hero-header {
     margin-bottom: 10vh;
 }
+.btn-conversation {
+    height: 60px;
+    line-height: 15px;
+    font-size: 15px;
+    padding: 18px 28px;
+}
+.btn-sub-text {
+    font-size: 11px;
+}
 
 /*** signup page ***/
 #signup-form {
