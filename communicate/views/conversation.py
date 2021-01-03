@@ -51,7 +51,7 @@ def view_conversation(request, conversation_id):
     context = {}
     # send message history
     messages = conversation_queries.get_message_history(conversation_id)
-    context['history_messages'] = messages
+    context['messages_to_view'] = messages
 
     # send inactive conversations
     conversations = conversation_queries.get_inactive_conversations(user=request.user)

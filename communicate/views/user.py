@@ -20,7 +20,7 @@ def index(request):
             # send message history
             messages = conversation_queries.get_message_history(conversation_id)
             if len(messages) > 0:
-                context['history_messages'] = messages
+                context['messages_to_communicate'] = messages
 
         # send inactive conversations
         conversations = conversation_queries.get_inactive_conversations(user=request.user)

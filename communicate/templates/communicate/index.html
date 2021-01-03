@@ -116,7 +116,7 @@
                 <!--交信中-->
                 {% if active_conversation_id %}
                   <div id="active-message-history">
-                    {% for message in history_messages %}
+                    {% for message in messages_to_communicate %}
                       {% if message.user_from.username == user.username %}
                         <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
                       {% else %}
@@ -254,38 +254,38 @@
                     };
                   </script>
                   <!--websocket-->
-                </div>
-              <!--交信中-->
-              {% elif history_messages %}
-                <div id="inactive-message-history">
-                  {% for message in history_messages %}
-                    {% if message.user_from.username == user.username %}
-                      <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
-                    {% else %}
-                      <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-                <script>
-                  var messageHistory = document.getElementById('inactive-message-history');
-                  messageHistory.scrollTop = messageHistory.scrollHeight;
-                </script>
-              {% else %}
-                <!--交信外-->
-                <div class="row" id="user-top">
-                  <div class="col offset-s4 s4">
-                    <form action="{% url 'communicate:start_conversation' %}" method="post">
-                      {% csrf_token %}
-                      <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
-                    </form>
+                <!--交信中-->
+                {% elif messages_to_view %}
+                  <div id="inactive-message-history">
+                    {% for message in messages_to_view %}
+                      {% if message.user_from.username == user.username %}
+                        <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                      {% else %}
+                        <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                      {% endif %}
+                    {% endfor %}
                   </div>
-                </div>
-                <h5>
-                よなよな起きている人に、悪いひとはいません<br>
-                ヨルの森で、素敵ではかない出会いをしてみませんか
-                </h5>
-                <!--交信外-->
-              {% endif %}
+                  <script>
+                    var messageHistory = document.getElementById('inactive-message-history');
+                    messageHistory.scrollTop = messageHistory.scrollHeight;
+                  </script>
+                {% else %}
+                  <!--交信外-->
+                  <div class="row" id="user-top">
+                    <div class="col offset-s4 s4">
+                      <form action="{% url 'communicate:start_conversation' %}" method="post">
+                        {% csrf_token %}
+                        <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
+                      </form>
+                    </div>
+                  </div>
+                  <h5>
+                  よなよな起きている人に、悪いひとはいません<br>
+                  ヨルの森で、素敵ではかない出会いをしてみませんか
+                  </h5>
+                  <!--交信外-->
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
