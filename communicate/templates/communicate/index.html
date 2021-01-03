@@ -16,11 +16,12 @@
     </head>
 
     <body>
-      <!--ボディ-->
-      <!--indexページ-->
-      {% if not user.is_authenticated %}
-        <!--キービジュアル-->
-        <div class="key-visual">
+
+      <!--キービジュアル-->
+      <div class="key-visual">
+        <!--ボディ-->
+        <!--indexページ-->
+        {% if not user.is_authenticated %}
           <!--ナビゲーションヘッダ-->
           <div class="navbar-fixed">
             <nav class="transparent z-depth-0">
@@ -68,12 +69,9 @@
               </form>
             </div>
           </div>
-        </div>
-        <!--indexページ-->
-        <!--userページ-->
-      {% else %}
-        <!--キービジュアル-->
-        <div class="key-visual">
+          <!--indexページ-->
+          <!--userページ-->
+        {% else %}
           <!--ナビゲーションヘッダ-->
           <div class="navbar-fixed">
             <nav class="transparent z-depth-0">
@@ -295,9 +293,9 @@
               </div>
             </div>
           </div>
-        </div>
-      <!--userページ-->
-      {% endif %}
+        <!--userページ-->
+        {% endif %}
+      </div>
       <!--ボディ-->
       <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="{% static 'communicate/js/materialize.min.js' %}"></script>
