@@ -88,12 +88,12 @@ i.icon-white {
     height: 50vh;
     overflow: auto;
 }
-#inactive-message-history {
-    height: 80vh;
-    overflow: auto;
-}
 #message-sender {
     height: 15vh;
+}
+#inactive-message-history {
+    height: 65vh;
+    overflow: auto;
 }
 #message {
     font-size: 18px;
