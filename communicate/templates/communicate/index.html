@@ -96,7 +96,7 @@
               {% for conversation in history_conversations %}
                 <div class="row">
                   <div class="col s8">
-                    <a href="#" class="waves-effect waves-light grey darken-4 btn-large btn-conversation">
+                    <a href="{% url 'communicate:view_conversation' conversation.id %}" class="waves-effect waves-light grey darken-4 btn-large btn-conversation">
                       <i class="material-icons left">chat_bubble</i>
                       {{ conversation.date }}<br>
                       <span class="btn-sub-text right">{{ conversation.duration }}</span>
@@ -115,7 +115,7 @@
               <div class="container">
                 <!--交信中-->
                 {% if active_conversation_id %}
-                  <div id="message-history">
+                  <div id="active-message-history">
                     {% for message in history_messages %}
                       {% if message.user_from.username == user.username %}
                         <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
@@ -161,7 +161,7 @@
                       M.Modal.init(modals, '');
                     });
                     /* scroll down at refresh */
-                    var messageHistory = document.getElementById('message-history');
+                    var messageHistory = document.getElementById('active-message-history');
                     messageHistory.scrollTop = messageHistory.scrollHeight;
 
                     /* audio */
@@ -198,7 +198,7 @@
                         messageP.classList.add('left-align');
                       }
 
-                      var messageHistory = document.getElementById('message-history');
+                      var messageHistory = document.getElementById('active-message-history');
                       messageHistory.appendChild(messageP);
 
                       /* add to messageHistory with typewriter effect */
@@ -256,6 +256,20 @@
                   <!--websocket-->
                 </div>
               <!--交信中-->
+              {% elif history_messages %}
+                <div id="inactive-message-history">
+                  {% for message in history_messages %}
+                    {% if message.user_from.username == user.username %}
+                      <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                    {% else %}
+                      <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <script>
+                  var messageHistory = document.getElementById('inactive-message-history');
+                  messageHistory.scrollTop = messageHistory.scrollHeight;
+                </script>
               {% else %}
                 <!--交信外-->
                 <div class="row" id="user-top">

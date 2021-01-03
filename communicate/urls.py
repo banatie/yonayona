@@ -15,6 +15,6 @@ urlpatterns = [
     # Conversation
     path('conversation/start/', views.start_conversation, name='start_conversation'),
     path('conversation/<int:conversation_id>/end/', views.end_conversation, name='end_conversation'),
-    path('conversation/<int:conversation_id>/view/', views.view_conversation, name='conversation_view'),
+    path('conversation/<int:conversation_id>/view/', views.view_conversation, name='view_conversation'),
     path('conversation/<int:conversation_id>/delete/', views.delete_conversation, name='delete_conversation'),
 ]

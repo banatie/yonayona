@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 
 from ..models import Conversation
-
+from ..utils import conversation_queries
 
 def start_conversation(request):
     if not request.user.is_authenticated:
@@ -22,11 +22,11 @@ def start_conversation(request):
                 conversation.users.add(request.user)
                 conversation.save()
                 return HttpResponseRedirect(reverse('communicate:index'))
-
-        # no opened active conversation
-        conversation = Conversation.objects.create()
-        conversation.users.add(request.user)
-        conversation.save()
+        else:
+            # no opened active conversation
+            conversation = Conversation.objects.create()
+            conversation.users.add(request.user)
+            conversation.save()
 
     return HttpResponseRedirect(reverse('communicate:index'))
 
@@ -42,8 +42,20 @@ def end_conversation(request, conversation_id):
 
     return HttpResponseRedirect(reverse('communicate:index'))
 
-def view_conversation(request):
+def view_conversation(request, conversation_id):
+    try:
+        conversation = Conversation.objects.get(pk=conversation_id)
+    except Conversation.DoesNotExist:
+        return HttpResponseRedirect(reverse('communicate:index'))
+
     context = {}
+    # send message history
+    messages = conversation_queries.get_message_history(conversation_id)
+    context['history_messages'] = messages
+
+    # send inactive conversations
+    conversations = conversation_queries.get_inactive_conversations(user=request.user)
+    context['history_conversations'] = conversations
     return render(request, 'communicate/index.html', context)
 
 def delete_conversation(request, conversation_id):

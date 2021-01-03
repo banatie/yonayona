@@ -3,11 +3,10 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q
 
 from ..models import Conversation
 from ..models import Message
-
+from ..utils import conversation_queries
 
 def index(request):
     context = {}
@@ -19,24 +18,13 @@ def index(request):
             context['active_conversation_id'] = conversation_id
 
             # send message history
-            messages = Message.objects.filter(conversation_id=conversation_id).order_by('datetime_created')
-            context['history_messages'] = messages
+            messages = conversation_queries.get_message_history(conversation_id)
+            if len(messages) > 0:
+                context['history_messages'] = messages
 
         # send inactive conversations
-        inactive_conversations = Conversation.objects.filter(Q(is_active=False) & Q(users__in=[request.user]) & ~Q(users_deleted__in=[request.user]))
-        if len(inactive_conversations) > 0:
-            # format
-            history_conversations = []
-            for conversation in reversed(inactive_conversations):
-                date = conversation.datetime_start.strftime('%Y-%m-%d')
-                duration = str(conversation.datetime_end - conversation.datetime_start)
-                duration = duration.split('.')[0]
-                history_conversations.append({
-                    'id' : conversation.id,
-                    'date' : date,
-                    'duration' : duration
-                })
-            context['history_conversations'] = history_conversations
+        conversations = conversation_queries.get_inactive_conversations(user=request.user)
+        context['history_conversations'] = conversations
 
     return render(request, 'communicate/index.html', context)
 
