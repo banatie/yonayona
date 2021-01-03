@@ -7,7 +7,6 @@ app_name = 'communicate'
 urlpatterns = [
     # User Account
     path('', views.index, name='index'),
-    #path('', views.index, name='user_top_page'),
     path('about/', views.about, name='about'),
     path('signup/', views.user_signup, name='signup'),
     path('login/', views.user_login, name='login'),
