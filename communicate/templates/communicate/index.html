@@ -115,41 +115,41 @@
               <div class="container">
                 <!--交信中-->
                 {% if active_conversation_id %}
-                  <div id="active-message-history">
-                    {% for message in messages_to_communicate %}
-                      {% if message.user_from.username == user.username %}
-                        <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
-                      {% else %}
-                        <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                  <div id="message-sender col s12">
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <textarea id="message" class="white-text" autofocus></textarea>
-                      </div>
+                  <div class="row">
+                    <div class="col s12" id="active-message-history">
+                      {% for message in messages_to_communicate %}
+                        {% if message.user_from.username == user.username %}
+                          <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                        {% else %}
+                          <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                        {% endif %}
+                      {% endfor %}
                     </div>
-                    <div class="row">
-                      <div class="col offset-s7 s3">
-                        <!--モーダル-->
-                        <!-- modal trigger -->
-                        <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
-                        <!-- end conversation modal -->
-                        <div id="modal-end-conversation" class="modal">
-                          <div class="modal-content black-text">
-                            <h4>この出会いにさようならをしますか？</h4>
-                          </div>
-                          <div class="modal-footer">
-                            <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
-                            <a href="{% url 'communicate:end_conversation' active_conversation_id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
-                          </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12" id="message-sender">
+                      <textarea id="message" class="white-text" autofocus></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col offset-s7 s3">
+                      <!--モーダル-->
+                      <!-- modal trigger -->
+                      <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
+                      <!-- end conversation modal -->
+                      <div id="modal-end-conversation" class="modal">
+                        <div class="modal-content black-text">
+                          <h4>この出会いにさようならをしますか？</h4>
                         </div>
+                        <div class="modal-footer">
+                          <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                          <a href="{% url 'communicate:end_conversation' active_conversation_id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                        </div>
+                      </div>
                         <!--モーダル-->
-                      </div>
-                      <div class="col s2">
-                        <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
-                      </div>
+                    </div>
+                    <div class="col s2">
+                      <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
                     </div>
                   </div>
                   <!--{{ value|json_script:"<id>" }}-->
@@ -256,14 +256,21 @@
                   <!--websocket-->
                 <!--交信中-->
                 {% elif messages_to_view %}
-                  <div id="inactive-message-history">
-                    {% for message in messages_to_view %}
-                      {% if message.user_from.username == user.username %}
-                        <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
-                      {% else %}
-                        <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
-                      {% endif %}
-                    {% endfor %}
+                  <div class="row">
+                    <div class="col s12" id="inactive-message-history">
+                      {% for message in messages_to_view %}
+                        {% if message.user_from.username == user.username %}
+                          <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                        {% else %}
+                          <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col offset-s9 s3">
+                      <a href="{% url 'communicate:index' %}" class="waves-effect waves-light btn-large">交信に戻る</a>
+                    </div>
                   </div>
                   <script>
                     var messageHistory = document.getElementById('inactive-message-history');

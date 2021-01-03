@@ -85,14 +85,14 @@ i.icon-white {
     overflow: auto;
 }
 #active-message-history {
-    height: 50vh;
+    height: 45vh;
     overflow: auto;
 }
 #message-sender {
     height: 15vh;
 }
 #inactive-message-history {
-    height: 65vh;
+    height: 60vh;
     overflow: auto;
 }
 #message {
