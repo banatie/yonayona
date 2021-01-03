@@ -36,6 +36,13 @@ body {
     font-family: "makinas-4";
     color: white;
 }
+
+footer {
+    height: 5vh;
+    position: absolute;
+    top: 88vh;
+}
+
 .btn-flat, .btn, .btn-small, .btn-large {
     font-family: "makinas-4";
 }
