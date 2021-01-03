@@ -39,9 +39,13 @@
           <!--エラーメッセージ-->
           <div class="container">
             <div id="hero-header">
-              <h1>ようこそヨルの森へ</h1>
-              <p>このふしぎな森では、夜中になると、心の中で誰かとつなげることができる。</p>
-              <p>名前も顔もまったくわからない誰かと、よなよな話してみませんか。</p>
+              <h3>ヨナヨナの森</h3>
+              <p>深夜0時を過ぎると、この森は不思議な空間になります。<br>
+              こころの中で強く念じると、世界の誰か<strong>1人</strong>とだけ更新することができます。<br>
+              その日どんな人と更新するのかを選ぶことはできません。<br>
+              夜が開けると、2度とその人と再開することはできません。<br>
+              その夜だけのめぐり逢わせを、ヨナヨナお楽しみください。<br>
+              </p>
             </div>
             <div class="row">
               <form class="col s12" action="{% url 'communicate:login' %}" method="post">
@@ -283,18 +287,23 @@
                   </script>
                 {% else %}
                   <!--交信外-->
-                  <div class="row" id="user-top">
-                    <div class="col offset-s4 s4">
-                      <form action="{% url 'communicate:start_conversation' %}" method="post">
-                        {% csrf_token %}
-                        <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
-                      </form>
+                  <div class="center-align">
+                    <div class="row" id="user-top">
+                      <div class="col offset-s4 s4">
+                        <form action="{% url 'communicate:start_conversation' %}" method="post">
+                          {% csrf_token %}
+                          <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
+                        </form>
+                      </div>
                     </div>
+                    <h3>ヨナヨナの森</h3>
+                    <p>深夜0時を過ぎると、この森は不思議な空間になります。<br>
+                    こころの中で強く念じると、世界の誰か<strong>1人</strong>とだけ更新することができます。<br>
+                    その日どんな人と更新するのかを選ぶことはできません。<br>
+                    夜が開けると、2度とその人と再開することはできません。<br>
+                    その夜だけのめぐり逢わせを、ヨナヨナお楽しみください。<br>
+                    </p>
                   </div>
-                  <h5>
-                  よなよな起きている人に、悪いひとはいません<br>
-                  ヨルの森で、素敵ではかない出会いをしてみませんか
-                  </h5>
                   <!--交信外-->
                 {% endif %}
               </div>
