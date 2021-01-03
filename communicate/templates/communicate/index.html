@@ -100,9 +100,22 @@
                     </a>
                   </div>
                   <div class="col offset-s1 s3">
-                    <a href="{% url 'communicate:delete_conversation' conversation.id %}" class="waves-effect waves-light grey darken-4 btn-large btn-delete-conversation">
+                    <!--モーダル-->
+                    <!-- modal trigger -->
+                    <a href="#modal-delete-conversation" class="waves-effect waves-light grey darken-4 btn-large btn-delete-conversation modal-trigger">
                       <i class="material-icons icon-white">delete</i>
                     </a>
+                    <!-- delete conversation modal -->
+                    <div id="modal-delete-conversation" class="modal left-align">
+                      <div class="modal-content black-text">
+                        <h4>この会話を削除しますか</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="{% url 'communicate:delete_conversation' conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                        <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                      </div>
+                    </div>
+                    <!--モーダル-->
                   </div>
                 </div>
               {% endfor %}
@@ -136,7 +149,7 @@
                       <!-- end conversation modal -->
                       <div id="modal-end-conversation" class="modal">
                         <div class="modal-content black-text">
-                          <h4>この出会いにさようならをしますか？</h4>
+                          <h4>この出会いにさようならをしますか</h4>
                         </div>
                         <div class="modal-footer">
                           <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
@@ -152,11 +165,6 @@
                   <!--{{ value|json_script:"<id>" }}-->
                   {{ active_conversation_id|json_script:"active_conversation_id" }}
                   <script>
-                    /* initialize modals */
-                    document.addEventListener('DOMContentLoaded', function() {
-                      var modals = document.querySelectorAll('.modal');
-                      M.Modal.init(modals, '');
-                    });
                     /* scroll down at refresh */
                     var messageHistory = document.getElementById('active-message-history');
                     messageHistory.scrollTop = messageHistory.scrollHeight;
@@ -302,6 +310,14 @@
       </div>
       <!--ボディ-->
       <!--JavaScript at end of body for optimized loading-->
+
+      <script>
+        /* initialize modals */
+        document.addEventListener('DOMContentLoaded', function() {
+          var modals = document.querySelectorAll('.modal');
+          M.Modal.init(modals, '');
+        });
+      </script>
       <script type="text/javascript" src="{% static 'communicate/js/materialize.min.js' %}"></script>
     </body>
   </html>
