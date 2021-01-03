@@ -310,13 +310,17 @@
       </div>
       <!--ボディ-->
       <!--JavaScript at end of body for optimized loading-->
-
       <script>
         /* initialize modals */
         document.addEventListener('DOMContentLoaded', function() {
           var modals = document.querySelectorAll('.modal');
           M.Modal.init(modals, '');
         });
+
+        /* background music */
+        var bgm = new Audio("{% static 'communicate/audio/quite_time.mp3' %}");
+        bgm.loop = true;
+        bgm.play();
       </script>
       <script type="text/javascript" src="{% static 'communicate/js/materialize.min.js' %}"></script>
     </body>
