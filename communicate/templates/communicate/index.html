@@ -155,7 +155,7 @@
             <div class="col s9">
               <div class="container">
                 <!--交信中ページ-->
-                {% if active_conversation_id %}
+                {% if active_conversation.id %}
                   <div class="row">
                     <div class="col s12" id="active-message-history">
                       {% for message in messages_to_communicate %}
@@ -184,7 +184,7 @@
                         </div>
                         <div class="modal-footer">
                           <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
-                          <a href="{% url 'communicate:end_conversation' active_conversation_id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                          <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
                         </div>
                       </div>
                         <!--モーダル-->
@@ -194,7 +194,7 @@
                     </div>
                   </div>
                   <!--{{ value|json_script:"<id>" }}-->
-                  {{ active_conversation_id|json_script:"active_conversation_id" }}
+                  {{ active_conversation.id|json_script:"active_conversation.id" }}
                   <script>
                     /* scroll down at refresh */
                     var messageHistory = document.getElementById('active-message-history');
@@ -205,7 +205,7 @@
 
                     /* websocket */
                     /* create websocket connection */
-                    const activeConversationId = JSON.parse(document.getElementById('active_conversation_id').textContent);
+                    const activeConversationId = JSON.parse(document.getElementById('active_conversation.id').textContent);
                     const communicationSocket = new WebSocket(
                       'ws://'
                       + window.location.host

@@ -15,8 +15,12 @@ def index(request):
         # send active conversation_id
         conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])
         if len(conversations) == 1:
-            conversation_id = conversations[0].id
-            context['active_conversation_id'] = conversation_id
+            conversation = conversations[0]
+            conversation_id = conversation.id
+            context['active_conversation'] = {
+                'id' : conversation_id,
+                'user_count' : len(conversation.users.all())
+            }
 
             # send message history
             messages = conversation_queries.get_message_history(conversation_id)
