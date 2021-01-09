@@ -112,11 +112,10 @@
             <li><a class="subheader">Account</a></li>
             <li><a class="waves-effect" href="{% url 'communicate:logout' %}">Logout</a></li>
           </ul>
-          <a data-target="settings-slide-out" class="sidenav-trigger"><i class="material-icons right icon-white">settings</i></a>
           <!--サイドバー-->
+          <a href="#" data-target="settings-slide-out" class="sidenav-trigger"><i class="material-icons right icon-white">settings</i></a>
           <!--ナビゲーションヘッダ-->
           <!--エラーメッセージ-->
-          </p>
           {% if error_message %}<h3 class="red-text center-align"><strong>{{ error_message }}</strong></h3>{% endif %}
           <!--エラーメッセージ-->
           <!--サイドバー-->
@@ -358,7 +357,10 @@
           M.Modal.init(modals, '');
           /* sidenavs */
           var sidenavs = document.querySelectorAll('.sidenav');
-          M.Sidenav.init(sidenavs, '');
+          var sidenavOptions = {
+            "edge": "right"
+          }
+          M.Sidenav.init(sidenavs, sidenavOptions);
         });
 
         /* background music */
