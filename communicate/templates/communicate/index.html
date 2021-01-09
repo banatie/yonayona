@@ -154,144 +154,153 @@
             <!--サイドバー-->
             <div class="col s9">
               <div class="container">
-                <!--交信中ページ-->
                 {% if active_conversation.id %}
-                  <div class="row">
-                    <div class="col s12" id="active-message-history">
-                      {% for message in messages_to_communicate %}
-                        {% if message.user_from.username == user.username %}
-                          <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
-                        {% else %}
-                          <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s12" id="message-sender">
-                      <textarea id="message" class="white-text" autofocus></textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col offset-s7 s3">
-                      <!--モーダル-->
-                      <!-- modal trigger -->
-                      <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
-                      <!-- end conversation modal -->
-                      <div id="modal-end-conversation" class="modal">
-                        <div class="modal-content black-text">
-                          <h4>この出会いにさようならをしますか</h4>
-                        </div>
-                        <div class="modal-footer">
-                          <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
-                          <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
-                        </div>
+                  <!--交信中ページ-->
+                  {% if active_conversation.user_count == 1 %}
+                    <!--マッチング待ちページ-->
+                    <div class="row">
+                      <div class="col offset-s4 s4">
+                        <h3>FINDING...</h3>
                       </div>
+                    </div>
+                    <!--マッチング待ちページ-->
+                  {% else %}
+                    <div class="row">
+                      <div class="col s12" id="active-message-history">
+                        {% for message in messages_to_communicate %}
+                          {% if message.user_from.username == user.username %}
+                            <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                          {% else %}
+                            <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12" id="message-sender">
+                        <textarea id="message" class="white-text" autofocus></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col offset-s7 s3">
                         <!--モーダル-->
+                        <!-- modal trigger -->
+                        <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
+                        <!-- end conversation modal -->
+                        <div id="modal-end-conversation" class="modal">
+                          <div class="modal-content black-text">
+                            <h4>この出会いにさようならをしますか</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                            <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                          </div>
+                        </div>
+                          <!--モーダル-->
+                      </div>
+                      <div class="col s2">
+                        <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
+                      </div>
                     </div>
-                    <div class="col s2">
-                      <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
-                    </div>
-                  </div>
-                  <!--{{ value|json_script:"<id>" }}-->
-                  {{ active_conversation.id|json_script:"active_conversation.id" }}
-                  <script>
-                    /* scroll down at refresh */
-                    var messageHistory = document.getElementById('active-message-history');
-                    messageHistory.scrollTop = messageHistory.scrollHeight;
-
-                    /* audio */
-                    //var typewriterType = new Audio("{% static 'communicate/audio/typewriter_type_short.mp3' %}");
-
-                    /* websocket */
-                    /* create websocket connection */
-                    const activeConversationId = JSON.parse(document.getElementById('active_conversation.id').textContent);
-                    const communicationSocket = new WebSocket(
-                      'ws://'
-                      + window.location.host
-                      + '/ws/communicate/'
-                      + activeConversationId
-                      + '/'
-                    );
-
-                    /* receive message */
-                    communicationSocket.onmessage = function(e) {
-                      const data = JSON.parse(e.data);
-
-                      /* extract data */
-                      const sender = data.username;
-                      const message = data.message.replaceAll("\n", "<br>");
-                      //var message = "{{ data.message|linebreaksbr }}";
-
-                      /* create the message dom */
-                      var messageP = document.createElement('p');
-                      messageP.classList.add('conversation');
-
-                      /* align according to the sender */
-                      if (sender == "{{ user.username }}") {
-                        messageP.classList.add('right-align');
-                      } else {
-                        messageP.classList.add('left-align');
-                      }
-
+                    <!--{{ value|json_script:"<id>" }}-->
+                    {{ active_conversation.id|json_script:"active_conversation.id" }}
+                    <script>
+                      /* scroll down at refresh */
                       var messageHistory = document.getElementById('active-message-history');
-                      messageHistory.appendChild(messageP);
-
-                      /* add to messageHistory with typewriter effect */
-                      var i = 0;
-                      const speed = 65; // milliseconds
-                      function typeWriter() {
-                        if (i < message.length) {
-                          if (message.slice(i, i+4) == '<br>') {
-                            messageP.innerHTML += '<br>';
-                            i += 4;
-                          } else {
-                            //typewriterType.play();
-                            messageP.innerHTML += message.charAt(i);
-                            messageHistory.scrollTop = messageHistory.scrollHeight;
-                            i++;
-                          }
-                          setTimeout(typeWriter, speed);
-                        }
-                      }
-                      typeWriter();
-
-                      /* scroll down */
                       messageHistory.scrollTop = messageHistory.scrollHeight;
-                    };
 
-                    /* connection error */
-                    communicationSocket.onclose = function(e) {
-                      console.log('error');
-                    };
+                      /* audio */
+                      //var typewriterType = new Audio("{% static 'communicate/audio/typewriter_type_short.mp3' %}");
 
-                    /* click submit at enter */
-                    document.querySelector('#message').onkeyup = function(e) {
-                      if (e.ctrlKey && e.keyCode == 13) { // enter, or return
-                        document.querySelector('#btn-send-message').click();
-                      }
-                    };
+                      /* websocket */
+                      /* create websocket connection */
+                      const activeConversationId = JSON.parse(document.getElementById('active_conversation.id').textContent);
+                      const communicationSocket = new WebSocket(
+                        'ws://'
+                        + window.location.host
+                        + '/ws/communicate/'
+                        + activeConversationId
+                        + '/'
+                      );
 
-                    /* send message */
-                    document.querySelector('#btn-send-message').onclick = function(e) {
-                      /* username */
-                      const username = "{{ user.username }}";
-                      /* message */
-                      const messageDom = document.querySelector('#message');
-                      const message = messageDom.value;
+                      /* receive message */
+                      communicationSocket.onmessage = function(e) {
+                        const data = JSON.parse(e.data);
 
-                      /* send */
-                      communicationSocket.send(JSON.stringify({
-                        'username': username,
-                        'message' : message
-                      }));
-                      /* clear input */
-                      messageDom.value = '';
-                    };
-                  </script>
-                  <!--websocket-->
+                        /* extract data */
+                        const sender = data.username;
+                        const message = data.message.replaceAll("\n", "<br>");
+                        //var message = "{{ data.message|linebreaksbr }}";
 
-                <!--交信中ページ-->
+                        /* create the message dom */
+                        var messageP = document.createElement('p');
+                        messageP.classList.add('conversation');
+
+                        /* align according to the sender */
+                        if (sender == "{{ user.username }}") {
+                          messageP.classList.add('right-align');
+                        } else {
+                          messageP.classList.add('left-align');
+                        }
+
+                        var messageHistory = document.getElementById('active-message-history');
+                        messageHistory.appendChild(messageP);
+
+                        /* add to messageHistory with typewriter effect */
+                        var i = 0;
+                        const speed = 65; // milliseconds
+                        function typeWriter() {
+                          if (i < message.length) {
+                            if (message.slice(i, i+4) == '<br>') {
+                              messageP.innerHTML += '<br>';
+                              i += 4;
+                            } else {
+                              //typewriterType.play();
+                              messageP.innerHTML += message.charAt(i);
+                              messageHistory.scrollTop = messageHistory.scrollHeight;
+                              i++;
+                            }
+                            setTimeout(typeWriter, speed);
+                          }
+                        }
+                        typeWriter();
+
+                        /* scroll down */
+                        messageHistory.scrollTop = messageHistory.scrollHeight;
+                      };
+
+                      /* connection error */
+                      communicationSocket.onclose = function(e) {
+                        console.log('error');
+                      };
+
+                      /* click submit at enter */
+                      document.querySelector('#message').onkeyup = function(e) {
+                        if (e.ctrlKey && e.keyCode == 13) { // enter, or return
+                          document.querySelector('#btn-send-message').click();
+                        }
+                      };
+
+                      /* send message */
+                      document.querySelector('#btn-send-message').onclick = function(e) {
+                        /* username */
+                        const username = "{{ user.username }}";
+                        /* message */
+                        const messageDom = document.querySelector('#message');
+                        const message = messageDom.value;
+
+                        /* send */
+                        communicationSocket.send(JSON.stringify({
+                          'username': username,
+                          'message' : message
+                        }));
+                        /* clear input */
+                        messageDom.value = '';
+                      };
+                    </script>
+                    <!--websocket-->
+                    <!--交信中ページ-->
+                  {% endif %}
                 {% elif messages_to_view %}
                   <div class="row">
                     <div class="col s12" id="inactive-message-history">
