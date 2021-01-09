@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 
 from ..models import Conversation
@@ -57,15 +58,15 @@ def user_signup(request):
         # no duplicate user
         user = None
         try:
-            user = User.objects.get(username=email)
-        except User.DoesNotExist:
+            user = get_user_model().objects.get(username=email)
+        except ObjectDoesNotExist:
             pass
         if user is not None:
             context = {'error_message' : 'The Email is already taken'}
             return render(request, 'communicate/signup.html', context)
         else:
             # create user and login
-            user = User.objects.create_user(first_name=first_name, last_name=last_name, username=email, email=email, password=password)
+            user = get_user_model().objects.create_user(first_name=first_name, last_name=last_name, username=email, email=email, password=password)
             login(request, user)
             return HttpResponseRedirect(reverse('communicate:index'))
 
