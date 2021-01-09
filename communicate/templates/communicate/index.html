@@ -108,11 +108,6 @@
           </ul>
           <a data-target="settings-slide-out" class="sidenav-trigger"><i class="material-icons right icon-white">settings</i></a>
           <!--サイドバー-->
-          <script>
-            document.getElementById('mySwitch').checked = function(e) {
-              /*do something*/
-            }
-          </script>
           <!--ナビゲーションヘッダ-->
           <!--エラーメッセージ-->
           </p>
@@ -361,9 +356,21 @@
         });
 
         /* background music */
-        var bgm = new Audio("{% static 'communicate/audio/quite_time.mp3' %}");
-        bgm.loop = true;
-        bgm.play();
+        function playBGM(bgm) {
+          bgmValue = document.getElementById('bgm-checkbox').checked;
+          if (bgmValue == false) {
+            bgm.loop = false;
+            bgm.pause();
+          } else {
+            bgm.loop = true;
+            bgm.play();
+          }
+          /*update database*/
+        }
+        const bgm = new Audio("{% static 'communicate/audio/quite_time.mp3' %}");
+        document.getElementById("bgm-checkbox").addEventListener("click", function(){
+          playBGM(bgm);
+        });
       </script>
       <script type="text/javascript" src="{% static 'communicate/js/materialize.min.js' %}"></script>
     </body>
