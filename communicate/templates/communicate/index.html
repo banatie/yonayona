@@ -316,15 +316,7 @@
                 {% else %}
 
                   <!--交信外ページ-->
-                  <div class="center-align">
-                    <div class="row" id="user-top">
-                      <div class="col offset-s4 s4">
-                        <form action="{% url 'communicate:start_conversation' %}" method="post">
-                          {% csrf_token %}
-                          <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
-                        </form>
-                      </div>
-                    </div>
+                  <div class="left-align">
                     <h3>ヨナヨナの森</h3>
                     <p>深夜0時を過ぎると、この森は不思議な空間になります。<br>
                     こころの中で強く念じると、世界の誰か<strong>1人</strong>とだけ更新することができます。<br>
@@ -332,6 +324,14 @@
                     夜が開けると、2度とその人と再開することはできません。<br>
                     その夜だけのめぐり逢わせを、ヨナヨナお楽しみください。<br>
                     </p>
+                    <div class="row" id="user-top">
+                      <div class="col s4">
+                        <form action="{% url 'communicate:start_conversation' %}" method="post">
+                          {% csrf_token %}
+                          <button id="send" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信を開始</button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                   <!--交信外ページ-->
                 {% endif %}
