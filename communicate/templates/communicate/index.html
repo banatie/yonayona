@@ -2,6 +2,8 @@
   <html>
     <head>
       {% load static %}
+      <!--jquery-->
+      <script src="{% static 'communicate/js/jquery-3.5.1.min.js' %}"></script>
       <!--css-->
       <link type="text/css" rel="stylesheet" href="{% static 'communicate/css/materialize.min.css' %}" media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{% static 'communicate/css/yonayona.css' %}"/>
@@ -96,7 +98,11 @@
               <span class="switch right">
                 <label>
                   Off
-                  <input id="bgm-checkbox" type="checkbox">
+                  {% if user.is_bgm_on %}
+                    <input id="bgm-checkbox" type="checkbox" checked="checked">
+                  {% else %}
+                    <input id="bgm-checkbox" type="checkbox">
+                  {% endif %}
                   <span class="lever"></span>
                   On
                 </label>
@@ -357,7 +363,6 @@
 
         /* background music */
         function playBGM(bgm) {
-          bgmValue = document.getElementById('bgm-checkbox').checked;
           if (bgmValue == false) {
             bgm.loop = false;
             bgm.pause();
@@ -365,12 +370,23 @@
             bgm.loop = true;
             bgm.play();
           }
-          /*update database*/
         }
+
         const bgm = new Audio("{% static 'communicate/audio/quite_time.mp3' %}");
         document.getElementById("bgm-checkbox").addEventListener("click", function(){
-          playBGM(bgm);
+          bgmValue = document.getElementById('bgm-checkbox').checked;
+          /*update database*/
+          $.ajax({
+            url: "{% url 'communicate:update_user_settings' %}",
+            data: {
+              is_bgm_on: bgmValue
+            },
+            success: function(result) {
+              playBGM(bgm);
+            }
+          });
         });
+        playBGM(bgm);
       </script>
       <script type="text/javascript" src="{% static 'communicate/js/materialize.min.js' %}"></script>
     </body>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
@@ -104,6 +104,22 @@ def user_logout(request):
     if request.user.is_authenticated:
         logout(request)
     return HttpResponseRedirect(reverse('communicate:index'))
+
+def update_user_settings(request):
+    if request.user.is_authenticated:
+        try:
+            user = get_user_model().objects.get(username=request.user.username)
+            print(user.is_bgm_on)
+            if request.GET['is_bgm_on'] == 'true':
+                user.is_bgm_on = True
+                print('TRUE')
+            else:
+                print('FALSE')
+                user.is_bgm_on = False
+            user.save()
+        except:
+            return JsonResponse({}, status=400)    
+        return JsonResponse({}, status=200)
 
 def report_user(request):
     # Add Welcome Message
