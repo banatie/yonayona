@@ -1,7 +1,7 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from ..models import Message
 from ..models import Conversation
@@ -34,7 +34,7 @@ class CommunicateConsumer(WebsocketConsumer):
         message = text_data_json['message']
 
         # save to db
-        user = User.objects.get(username=username)
+        user = get_user_model().objects.get(username=username)
         #user = users[0]
         conversation = Conversation.objects.get(id=self.conversation_id)
 
