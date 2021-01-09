@@ -19,6 +19,7 @@
       <!--キービジュアル-->
       <div class="key-visual">
         <!--ボディ-->
+
         <!--indexページ-->
         {% if not user.is_authenticated %}
           <!--ナビゲーションヘッダ-->
@@ -73,6 +74,7 @@
             </div>
           </div>
           <!--indexページ-->
+
           <!--userページ-->
         {% else %}
           <!--ナビゲーションヘッダ-->
@@ -127,7 +129,7 @@
             <!--サイドバー-->
             <div class="col s9">
               <div class="container">
-                <!--交信中-->
+                <!--交信中ページ-->
                 {% if active_conversation_id %}
                   <div class="row">
                     <div class="col s12" id="active-message-history">
@@ -263,7 +265,8 @@
                     };
                   </script>
                   <!--websocket-->
-                <!--交信中-->
+
+                <!--交信中ページ-->
                 {% elif messages_to_view %}
                   <div class="row">
                     <div class="col s12" id="inactive-message-history">
@@ -286,7 +289,8 @@
                     messageHistory.scrollTop = messageHistory.scrollHeight;
                   </script>
                 {% else %}
-                  <!--交信外-->
+
+                  <!--交信外ページ-->
                   <div class="center-align">
                     <div class="row" id="user-top">
                       <div class="col offset-s4 s4">
@@ -304,12 +308,13 @@
                     その夜だけのめぐり逢わせを、ヨナヨナお楽しみください。<br>
                     </p>
                   </div>
-                  <!--交信外-->
+                  <!--交信外ページ-->
                 {% endif %}
               </div>
             </div>
           </div>
         <!--userページ-->
+
         {% endif %}
         <footer class="page-footer transparent z-depth-0">
           <div class="footer-copyright">
