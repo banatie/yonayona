@@ -38,12 +38,6 @@ class CommunicateConsumer(WebsocketConsumer):
         #user = users[0]
         conversation = Conversation.objects.get(id=self.conversation_id)
 
-        """
-        try:
-            Message(user_from=user, conversation_id=self.group_name, text=message).save()
-        except:
-            pass
-        """
         Message(user_from=user, conversation_id=conversation, text=message).save()   
 
         # send messsage to group
