@@ -155,6 +155,8 @@
             <div class="col s9">
               <div class="container">
                 {% if active_conversation.id %}
+                  <!--{{ value|json_script:"<id>" }}-->
+                  {{ active_conversation.id|json_script:"active_conversation.id" }}
                   <!--交信中ページ-->
                   {% if active_conversation.user_count == 1 %}
                     <!--マッチング待ちページ-->
@@ -170,6 +172,28 @@
                         </div>
                       </div>
                     </div>
+                    <script>
+                      /* websocket */
+                      /* create websocket connection */
+                      const activeConversationId = JSON.parse(document.getElementById('active_conversation.id').textContent);
+                      const communicationSocket = new WebSocket(
+                        'ws://'
+                        + window.location.host
+                        + '/ws/communicate/'
+                        + activeConversationId
+                        + '/'
+                      );
+
+                      /* receive message */
+                      communicationSocket.onmessage = function(e) {
+                        window.location.href = "{% url 'communicate:index' %}";
+                      };
+
+                      /* connection error */
+                      communicationSocket.onclose = function(e) {
+                        console.log('error');
+                      };
+                    </script>
                     <!--マッチング待ちページ-->
                   {% else %}
                     <div class="row">
@@ -209,8 +233,6 @@
                         <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
                       </div>
                     </div>
-                    <!--{{ value|json_script:"<id>" }}-->
-                    {{ active_conversation.id|json_script:"active_conversation.id" }}
                     <script>
                       /* scroll down at refresh */
                       var messageHistory = document.getElementById('active-message-history');
