@@ -325,6 +325,20 @@
                         /* clear input */
                         messageDom.value = '';
                       };
+
+                      /*send first message if not exists*/
+                      document.addEventListener('DOMContentLoaded', function() {
+                        if ("{{ messages_to_communicate|length }}" == 0) {
+                          const username = "{{ user.username }}";
+                          const message = "こんばんは";
+
+                          /* send */
+                          communicationSocket.send(JSON.stringify({
+                            'username': username,
+                            'message' : message
+                          }));
+                        }
+                      }, false);
                     </script>
                     <!--websocket-->
                     <!--交信中ページ-->
