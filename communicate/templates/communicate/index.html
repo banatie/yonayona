@@ -43,8 +43,8 @@
           <div class="container">
             <div id="hero-header">
               <h3>ヨナヨナの森</h3>
-              <p>深夜0時を過ぎると、この森は不思議な空間になります。<br>
-              こころの中で強く念じると、世界の誰か<strong>1人</strong>とだけ更新することができます。<br>
+              <p id="welcome-message">深夜0時を過ぎると、この森は不思議な空間になります。<br>
+              こころの中で強く念じると、世界の誰か1人とだけ更新することができます。<br>
               その日どんな人と更新するのかを選ぶことはできません。<br>
               夜が開けると、2度とその人と再開することはできません。<br>
               その夜だけのめぐり逢わせを、ヨナヨナお楽しみください。<br>
@@ -75,6 +75,31 @@
               </form>
             </div>
           </div>
+          <script>
+            /* audio */
+            var typewriterType = new Audio("{% static 'communicate/audio/typewriter_type_short.mp3' %}");
+
+            var messageDom = document.getElementById('welcome-message');
+            var message = messageDom.innerHTML;
+            messageDom.innerHTML = '';
+            const speed = 65; // milliseconds
+            var i = 0;
+            /* add to messageHistory with typewriter effect */
+            function showTypeWriterMessage() {
+              if (i < message.length) {
+                if (message.slice(i, i+4) == '<br>') {
+                  messageDom.innerHTML += '<br>';
+                  i += 4;
+                } else {
+                  typewriterType.play();
+                  messageDom.innerHTML += message.charAt(i);
+                  i++;
+                }
+                setTimeout(showTypeWriterMessage, speed);
+              }
+            }
+            showTypeWriterMessage();
+          </script>
           <!--indexページ-->
 
           <!--userページ-->
@@ -370,7 +395,7 @@
                   <div class="left-align">
                     <h3>ヨナヨナの森</h3>
                     <p>深夜0時を過ぎると、この森は不思議な空間になります。<br>
-                    こころの中で強く念じると、世界の誰か<strong>1人</strong>とだけ更新することができます。<br>
+                    こころの中で強く念じると、世界の誰か1人とだけ更新することができます。<br>
                     その日どんな人と更新するのかを選ぶことはできません。<br>
                     夜が開けると、2度とその人と再開することはできません。<br>
                     その夜だけのめぐり逢わせを、ヨナヨナお楽しみください。<br>
