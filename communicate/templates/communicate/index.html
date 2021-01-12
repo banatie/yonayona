@@ -81,6 +81,7 @@
 
             var messageDom = document.getElementById('welcome-message');
             var message = messageDom.innerHTML;
+            message = message.replaceAll(' ', '');
             messageDom.innerHTML = '';
             const speed = 65; // milliseconds
             var i = 0;
