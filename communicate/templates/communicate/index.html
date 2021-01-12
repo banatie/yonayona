@@ -256,7 +256,7 @@
                           <!--モーダル-->
                       </div>
                       <div class="col s2">
-                        <button id="btn-send-message" class="btn waves-effect waves-light btn-large" type="submit" name="action">交信</button>
+                        <a id="btn-send-message" class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="Ctrl + Enter" type="submit" name="action">交信</a>
                       </div>
                     </div>
                     <script>
@@ -438,6 +438,11 @@
             "edge": "right"
           }
           M.Sidenav.init(sidenavs, sidenavOptions);
+        });
+        /* tooltips */
+        document.addEventListener('DOMContentLoaded', function() {
+          var tooltips = document.querySelectorAll('.tooltipped');
+          M.Tooltip.init(tooltips, '');
         });
 
         /* background music */
