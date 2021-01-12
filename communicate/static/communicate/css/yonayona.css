@@ -61,10 +61,8 @@ i.icon-white {
 }
 
 /*** top page ***/
-#slide-out-btn {
-    display: inline;
-}
 #hero-header {
+    height: 30vh;
     margin-bottom: 10vh;
 }
 .btn-conversation {
@@ -86,6 +84,9 @@ i.icon-white {
 }
 
 /*** user page ***/
+#slide-out-btn {
+    display: inline;
+}
 #user-top {
     margin-top: 15vh;
 }
