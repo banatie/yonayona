@@ -37,9 +37,6 @@
             </nav>
           </div>
           <!--ナビゲーションヘッダ-->
-          <!--エラーメッセージ-->
-          {% if error_message %}<h3 class="red-text center-align"><strong>{{ error_message }}</strong></h3>{% endif %}
-          <!--エラーメッセージ-->
           <div class="container">
             <div id="hero-header">
               <h3>ヨナヨナの森</h3>
@@ -58,6 +55,11 @@
                     <i class="material-icons prefix icon-white">email</i>
                     <input name="email" id="email" type="email" class="validate" autofocus>
                     <label for ="email">Email</label>
+                    <!--エラーメッセージ-->
+                    {% if error_message %}
+                      <span class="helper-text red-text">{{ error_message }}</span>
+                    {% endif %}
+                    <!--エラーメッセージ-->
                   </div>
                 </div>
                 <div class="row">
@@ -141,9 +143,6 @@
           </ul>
           <!--サイドバー-->
           <!--ナビゲーションヘッダ-->
-          <!--エラーメッセージ-->
-          {% if error_message %}<h3 class="red-text center-align"><strong>{{ error_message }}</strong></h3>{% endif %}
-          <!--エラーメッセージ-->
           <!--サイドバー-->
           <div class="row">
             <div class="col s3" id="conversation-history">
