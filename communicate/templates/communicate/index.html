@@ -212,7 +212,14 @@
 
                       /* receive message */
                       communicationSocket.onmessage = function(e) {
-                        window.location.href = "{% url 'communicate:index' %}";
+                        const data = JSON.parse(e.data);
+
+                        /* extract data */
+                        const command = data.command;
+                        /* start conversation */
+                        if (command == 'start') {
+                          window.location.href = "{% url 'communicate:index' %}";
+                        }
                       };
 
                       /* connection error */
@@ -281,6 +288,12 @@
                       /* receive message */
                       communicationSocket.onmessage = function(e) {
                         const data = JSON.parse(e.data);
+
+                        const command = data.command;
+                        /* end conversation */
+                        if (command == 'end') {
+                          window.location.href = "{% url 'communicate:index' %}";
+                        }
 
                         /* extract data */
                         const sender = data.username;

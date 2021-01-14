@@ -32,6 +32,10 @@ class CommunicateConsumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         username = text_data_json['username']
         message = text_data_json['message']
+        try:
+            command = text_data_json['command']
+        except KeyError:
+            command = ''
 
         # save to db
         user = get_user_model().objects.get(username=username)
@@ -46,7 +50,8 @@ class CommunicateConsumer(WebsocketConsumer):
             {
                 'type' : 'conversation_message',
                 'username': username,
-                'message' : message
+                'message' : message,
+                'command' : command
             }
         )
 
@@ -54,10 +59,12 @@ class CommunicateConsumer(WebsocketConsumer):
         # receive message from group
         username = event['username']
         message = event['message']
+        command = event['command']
 
         # send message to websocket
         self.send(text_data=json.dumps({
             'username': username,
-            'message' : message
+            'message' : message,
+            'command' : command
         }))
         

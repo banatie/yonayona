@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 
 from ..models import Conversation
 from ..utils import conversation_queries
+from ..websocket import server_utils
 
 def start_conversation(request):
     if not request.user.is_authenticated:
@@ -21,6 +22,10 @@ def start_conversation(request):
                 # opened active conversation exists
                 conversation.users.add(request.user)
                 conversation.save()
+
+                # send start command
+                server_utils.send_command(conversation_id=conversation.id, command='start')
+
                 return HttpResponseRedirect(reverse('communicate:index'))
         else:
             # no opened active conversation
@@ -39,6 +44,9 @@ def end_conversation(request, conversation_id):
 
     conversation.is_active = False
     conversation.save()
+
+    # send end command
+    server_utils.send_command(conversation_id=conversation_id, command="end")
 
     return HttpResponseRedirect(reverse('communicate:index'))
 
