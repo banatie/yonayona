@@ -40,7 +40,7 @@ def about(request):
 def user_signup(request):
     if request.user.is_authenticated:
         # Already logged in
-        context = {'error_message' : 'User already logged in'}
+        context = {'error_message' : 'すでにログインしています'}
         return render(request, 'communicate/index.html', context)
 
     # GET
@@ -56,7 +56,7 @@ def user_signup(request):
             email = request.POST['email']
             password = request.POST['password']
         except KeyError:
-            context = {'error_message' : 'Some form item is not found'}
+            context = {'error_message' : 'ログイン情報が正しくありません'}
             return render(request, 'communicate/signup.html', context)
 
         # no duplicate user
@@ -66,7 +66,7 @@ def user_signup(request):
         except ObjectDoesNotExist:
             pass
         if user is not None:
-            context = {'error_message' : 'The Email is already taken'}
+            context = {'error_message' : 'メールアドレスがすでに登録されています'}
             return render(request, 'communicate/signup.html', context)
         else:
             # create user and login
@@ -89,7 +89,7 @@ def user_login(request):
                 email = request.POST['email']
                 password = request.POST['password']
             except KeyError:
-                context = {'error_message' : 'Invalid Login Information'}
+                context = {'error_message' : 'ログイン情報が正しくありません'}
                 return render(request, 'communicate/index.html', context)
 
             # authenticate
@@ -101,7 +101,7 @@ def user_login(request):
                 return HttpResponseRedirect(reverse('communicate:index'))
             else:
                 # user exists
-                context = {'error_message' : 'Invalid Login Information'}
+                context = {'error_message' : 'ログイン情報が正しくありません'}
                 return render(request, 'communicate/index.html', context)
 
 def user_logout(request):
