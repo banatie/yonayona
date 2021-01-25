@@ -24,3 +24,8 @@ class Message(models.Model):
 
     def __str__(self):
         return self.text
+
+class Feedback(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    message = models.CharField(max_length=3000)

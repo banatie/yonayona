@@ -4,9 +4,11 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
 
 from ..models import Conversation
 from ..models import Message
+from ..models import Feedback
 from ..utils import conversation_queries
 
 def index(request):
@@ -108,6 +110,21 @@ def user_logout(request):
     if request.user.is_authenticated:
         logout(request)
     return HttpResponseRedirect(reverse('communicate:index'))
+
+def feedback(request):
+    if request.method == 'GET':
+        return render(request, 'communicate/feedback.html', {})
+    elif request.method == 'POST':
+        title = request.POST['title']
+        message = request.POST['message']
+
+        # Save to DB
+        Feedback(user=request.user, title=title, message=message).save()
+
+        # Send notification
+
+        context = {'message' : '貴重なご意見をありがとうございます。'}
+        return render(request, 'communicate/feedback.html', context)
 
 def update_user_settings(request):
     if request.user.is_authenticated:
