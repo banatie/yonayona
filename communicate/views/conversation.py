@@ -35,6 +35,17 @@ def start_conversation(request):
 
     return HttpResponseRedirect(reverse('communicate:index'))
 
+def cancel_conversation(request, conversation_id):
+    try:
+        # find unmatched conversation
+        conversation = Conversation.objects.get(id=conversation_id)
+    except Conversation.DoesNotExist:
+        return HttpResponseRedirect(reverse('communicate:index'))
+
+    # delete
+    conversation.delete()
+    return HttpResponseRedirect(reverse('communicate:index'))
+
 def end_conversation(request, conversation_id):
     # update conversation
     try:
