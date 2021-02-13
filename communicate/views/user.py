@@ -10,6 +10,13 @@ from ..models import Conversation
 from ..models import Message
 from ..models import Feedback
 from ..utils import conversation_queries
+from ..config.line import ACCESS_TOKEN, CHANNEL_SECRET
+from linebot import LineBotApi, WebhookHandler
+from linebot.models import TextSendMessage
+
+
+line_bot_api = LineBotApi(ACCESS_TOKEN)
+handler = WebhookHandler(CHANNEL_SECRET)
 
 def index(request):
     context = {}
@@ -122,6 +129,10 @@ def feedback(request):
         Feedback(user=request.user, title=title, message=message).save()
 
         # Send notification
+        text = '[タイトル]\n{title}\n\n[ご意見]\n{message}'.format(
+            title=title, message=message
+        )
+        line_bot_api.broadcast(TextSendMessage(text=text))
 
         context = {'message' : '貴重なご意見をありがとうございます。'}
         return render(request, 'communicate/feedback.html', context)
