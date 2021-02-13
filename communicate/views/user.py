@@ -58,8 +58,8 @@ def user_signup(request):
 
     # POST
     if request.method == 'POST':
-        # get parameters
         try:
+            # get parameters
             first_name = request.POST['first_name']
             last_name = request.POST['last_name']
             email = request.POST['email']
@@ -93,8 +93,8 @@ def user_login(request):
         if request.user.is_authenticated:
             return render(request, 'communicate/index.html', {})
         else:
-            # get parameters
             try:
+                # get parameters
                 email = request.POST['email']
                 password = request.POST['password']
             except KeyError:

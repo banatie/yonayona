@@ -47,8 +47,8 @@ def cancel_conversation(request, conversation_id):
     return HttpResponseRedirect(reverse('communicate:index'))
 
 def end_conversation(request, conversation_id):
-    # update conversation
     try:
+        # update conversation
         conversation = Conversation.objects.get(id=conversation_id, is_active=True)
     except Conversation.DoesNotExist:
         return HttpResponseRedirect(reverse('communicate:index'))
@@ -78,8 +78,8 @@ def view_conversation(request, conversation_id):
     return render(request, 'communicate/index.html', context)
 
 def delete_conversation(request, conversation_id):
-    # update conversation
     try:
+        # update conversation
         conversation = Conversation.objects.get(pk=conversation_id)
     except Conversation.DoesNotExist:
         return HttpResponseRedirect(reverse('communicate:index'))
