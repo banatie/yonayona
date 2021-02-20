@@ -273,11 +273,11 @@
                         <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
                         <div id="modal-end-conversation" class="modal">
                           <div class="modal-content black-text">
-                            <h4>この出会いにさようならをしますか</h4>
+                            <h4>この交信を終了しますか？</h4>
                           </div>
                           <div class="modal-footer">
-                            <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
                             <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                            <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
                           </div>
                         </div>
                       </div>
