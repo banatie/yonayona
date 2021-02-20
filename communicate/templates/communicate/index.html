@@ -249,9 +249,13 @@
                       </div>
                     </div>
                     <div class="row">
+                      <a class="dropdown-trigger right" href="#!" data-target="conversation-action-dropdown"><i class="material-icons icon-white">more_vert</i></a>
+                      <ul id="conversation-action-dropdown" class="dropdown-content">
+                        <li><a class="waves-effect waves-light teal white-text modal-trigger center" href="#modal-report-user">通報</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a class="waves-effect waves-light teal white-text modal-trigger center" href="#modal-end-conversation">交信終了</a></li>
+                      </ul>
                       <!--モーダル-->
-                      <div class="col s3">
-                        <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-report-user">相手を通報</a>
                         <div id="modal-report-user" class="modal">
                           <div class="modal-content black-text">
                             <div class="collection">
@@ -266,11 +270,8 @@
                             <a class="modal-close waves-effect waves-green btn-flat">キャンセル</a>
                           </div>
                         </div>
-                      </div>
-                      <!--モーダル-->
-                      <!--モーダル-->
-                      <div class="col s3">
-                        <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
+                        <!--モーダル-->
+                        <!--モーダル-->
                         <div id="modal-end-conversation" class="modal">
                           <div class="modal-content black-text">
                             <h4>この交信を終了しますか？</h4>
@@ -280,11 +281,10 @@
                             <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
                           </div>
                         </div>
-                      </div>
-                      <!--モーダル-->
-                      <div class="col s2">
+                      <div class="col s2 right">
                         <a id="btn-send-message" class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="Ctrl + Enter" type="submit" name="action">交信</a>
                       </div>
+                        <!--モーダル-->
                     </div>
                     <script>
                       /* scroll down at refresh */
@@ -470,6 +470,12 @@
         document.addEventListener('DOMContentLoaded', function() {
           var tooltips = document.querySelectorAll('.tooltipped');
           M.Tooltip.init(tooltips, '');
+        });
+
+        /* dropdown */
+        document.addEventListener('DOMContentLoaded', function() {
+          var dropdowns = document.querySelectorAll('.dropdown-trigger');
+          M.Dropdown.init(dropdowns, '');
         });
 
         /* background music */
