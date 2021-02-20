@@ -12,8 +12,8 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('feedback/', views.feedback, name='feedback'),
-    path('update/user/bgm', views.update_user_settings, name='update_user_settings'),
-    path('report/user', views.report_user, name='report_user'),
+    path('update/user/bgm/', views.update_user_settings, name='update_user_settings'),
+    path('report/user/<int:conversation_id>/<str:explanation>/', views.report_user, name='report_user'),
     # Conversation
     path('conversation/start/', views.start_conversation, name='start_conversation'),
     path('conversation/<int:conversation_id>/cancel/', views.cancel_conversation, name='cancel_conversation'),

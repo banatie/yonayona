@@ -249,11 +249,28 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col offset-s7 s3">
-                        <!--モーダル-->
-                        <!-- modal trigger -->
+                      <!--モーダル-->
+                      <div class="col s3">
+                        <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-report-user">相手を通報</a>
+                        <div id="modal-report-user" class="modal">
+                          <div class="modal-content black-text">
+                            <div class="collection">
+                              <a href="{% url 'communicate:report_user' active_conversation.id '出会いを求めるような発言' %}" class="collection-item">出会いを求めるような発言</a>
+                              <a href="{% url 'communicate:report_user' active_conversation.id '性的な発言' %}" class="collection-item">性的な発言</a>
+                              <a href="{% url 'communicate:report_user' active_conversation.id '暴力的または不快な発言' %}" class="collection-item">暴力的または不快な発言</a>
+                              <a href="{% url 'communicate:report_user' active_conversation.id '差別的または攻撃的な発言' %}" class="collection-item">差別的または攻撃的な発言</a>
+                              <a href="{% url 'communicate:report_user' active_conversation.id '有害または危険な発言' %}" class="collection-item">有害または危険な発言</a>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-green btn-flat">キャンセル</a>
+                          </div>
+                        </div>
+                      </div>
+                      <!--モーダル-->
+                      <!--モーダル-->
+                      <div class="col s3">
                         <a class="waves-effect waves-light btn-large modal-trigger" href="#modal-end-conversation">交信を終了</a>
-                        <!-- end conversation modal -->
                         <div id="modal-end-conversation" class="modal">
                           <div class="modal-content black-text">
                             <h4>この出会いにさようならをしますか</h4>
@@ -263,8 +280,8 @@
                             <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
                           </div>
                         </div>
-                          <!--モーダル-->
                       </div>
+                      <!--モーダル-->
                       <div class="col s2">
                         <a id="btn-send-message" class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="Ctrl + Enter" type="submit" name="action">交信</a>
                       </div>

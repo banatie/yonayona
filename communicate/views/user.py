@@ -6,9 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 
-from ..models import Conversation
-from ..models import Message
-from ..models import Feedback
+from ..models import Conversation, Message, Feedback, Report
 from ..utils import conversation_queries
 from ..config.line import ACCESS_TOKEN, CHANNEL_SECRET
 from linebot import LineBotApi, WebhookHandler
@@ -153,7 +151,18 @@ def update_user_settings(request):
             return JsonResponse({}, status=400)    
         return JsonResponse({}, status=200)
 
-def report_user(request):
-    # Add Welcome Message
-    context = {}
-    return render(request, 'communicate/index.html', context)
+def report_user(request, conversation_id, explanation):
+    # Get reporter, user_reported, and explanation
+    reporter = request.user
+    conversation = Conversation.objects.get(pk=conversation_id)
+    for user in conversation.users.all():
+        if user != reporter:
+            user_reported = user
+            break
+
+    # Create and save report
+    report = Report(reporter=reporter, user_reported=user_reported, explanation=explanation)
+    report.save()
+
+    # End conversation
+    return HttpResponseRedirect(reverse('communicate:end_conversation', kwargs={'conversation_id':conversation_id}))
