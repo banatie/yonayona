@@ -428,14 +428,22 @@
                   <!--交信外ページ-->
                   <div class="left-align">
                     <h3>夜な夜な、話そう</h3>
-                    <div class="row" id="user-top">
-                      <div class="col s4">
-                        <form action="{% url 'communicate:start_conversation' %}" method="post">
-                          {% csrf_token %}
-                          <button id="send" class="btn waves-effect waves-light btn-large pulse" type="submit" name="action">交信を開始</button>
-                        </form>
+                    {% if is_available %}
+                      <div class="row" id="user-top">
+                        <div class="col s4">
+                          <form action="{% url 'communicate:start_conversation' %}" method="post">
+                            {% csrf_token %}
+                            <button id="send" class="btn waves-effect waves-light btn-large pulse" type="submit" name="action">交信を開始</button>
+                          </form>
+                        </div>
                       </div>
-                    </div>
+                    {% else %}
+                     <div class="row" id="availability_info">
+                        <div class="col s12">
+                      <h5>ごめんなさい... <br>{{ working_hours }}のみ交信ができます</h5>
+                     </div>
+                     </div>
+                    {% endif %}
                   </div>
                   <!--交信外ページ-->
                 {% endif %}

@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 
 from ..models import Conversation, Message, Feedback, Report
-from ..utils import conversation_queries
+from ..utils import conversation_queries, availability_utils
 from ..config.line import ACCESS_TOKEN, CHANNEL_SECRET
 from linebot import LineBotApi, WebhookHandler
 from linebot.models import TextSendMessage
@@ -37,6 +37,10 @@ def index(request):
         # send inactive conversations
         conversations = conversation_queries.get_inactive_conversations(user=request.user)
         context['history_conversations'] = conversations
+
+        # availability
+        context['is_available'] = availability_utils.is_available()
+        context['working_hours'] = availability_utils.get_working_hours_str()
 
     return render(request, 'communicate/index.html', context)
 

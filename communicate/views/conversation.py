@@ -3,11 +3,11 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 
 from ..models import Conversation
-from ..utils import conversation_queries
+from ..utils import conversation_queries, availability_utils
 from ..websocket import server_utils
 
 def start_conversation(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated or not availability_utils.is_available():
         return HttpResponseRedirect(reverse('communicate:index'))
 
     conversations = Conversation.objects.filter(is_active=True, users__in=[request.user])

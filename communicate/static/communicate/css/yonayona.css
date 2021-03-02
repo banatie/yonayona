@@ -92,6 +92,9 @@ i.icon-white {
 #user-top {
     margin-top: 15vh;
 }
+#availability_info {
+    margin-top: 15vh;
+}
 #conversation-history {
     height: 80vh;
     direction: rtl;
