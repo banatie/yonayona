@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'channels',
     'communicate.apps.CommunicateConfig',
     'django.contrib.admin',
@@ -138,3 +139,7 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+CRONJOBS = [
+    ('0 */1 * * *', 'communicate.cron.end_all_conversation')
+]
