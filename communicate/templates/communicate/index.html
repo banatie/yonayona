@@ -488,12 +488,12 @@
 
         /* background music */
         function playBGM(bgm) {
-          if (bgmValue == false) {
-            bgm.loop = false;
-            bgm.pause();
-          } else {
+          if (document.getElementById('bgm-checkbox').checked) {
             bgm.loop = true;
             bgm.play();
+          } else {
+            bgm.loop = false;
+            bgm.pause();
           }
         }
 
