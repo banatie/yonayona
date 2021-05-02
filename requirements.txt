@@ -71,7 +71,6 @@ requests==2.25.1
 requests-unixsocket==0.1.5
 systemd-python==234
 toml==0.10.2
-Twisted==20.3.0
 ufw==0.36
 urllib3==1.26.3
 usb-creator==0.3.3
