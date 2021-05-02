@@ -57,7 +57,6 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycairo==1.16.2
 pycparser==2.20
-pycrypto==2.6.1
 pygobject==3.26.1
 PyHamcrest==2.0.2
 pylint==2.6.0
