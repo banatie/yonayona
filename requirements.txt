@@ -72,7 +72,6 @@ requests-unixsocket==0.1.5
 scipy==1.5.3
 seaborn==0.11.0
 SecretStorage==2.3.1
-service-identity==18.1.0
 system-service==0.3
 systemd-python==234
 toml==0.10.2
