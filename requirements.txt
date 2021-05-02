@@ -75,7 +75,6 @@ SecretStorage==2.3.1
 service-identity==18.1.0
 simplejson==3.13.2
 six==1.15.0
-sqlparse==0.4.1
 system-service==0.3
 systemd-python==234
 toml==0.10.2
