@@ -69,8 +69,6 @@ PyYAML==3.12
 reportlab==3.4.0
 requests==2.25.1
 requests-unixsocket==0.1.5
-scipy==1.5.3
-system-service==0.3
 systemd-python==234
 toml==0.10.2
 Twisted==20.3.0
