@@ -11,7 +11,6 @@ cffi==1.14.4
 channels==3.0.3
 channels-redis==3.2.0
 chardet==4.0.0
-command-not-found==0.3
 constantly==15.1.0
 cryptography==3.3.1
 cupshelpers==1.0
