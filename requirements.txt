@@ -68,7 +68,6 @@ pyxdg==0.25
 PyYAML==3.12
 reportlab==3.4.0
 requests==2.25.1
-requests-unixsocket==0.1.5
 ufw==0.36
 urllib3==1.26.3
 usb-creator==0.3.3
