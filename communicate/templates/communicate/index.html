@@ -129,19 +129,44 @@
 
           <!--userページ-->
         {% else %}
-          <!--ナビゲーションヘッダ-->
-          <div class="navbar-fixed">
-            <nav class="transparent z-depth-0">
-              <div class="nav-wrapper">
-                <a href="{% url 'communicate:index' %}" class="brand-logo">yonayona</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li>
-                    <a href="#" data-target="settings-slide-out" id="slide-out-btn" class="sidenav-trigger"><i class="material-icons right icon-white">settings</i></a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+          <!--ナビゲーションヘッダ - デスクトップ用-->
+          <div class="hide-on-small-only">
+            <div class="navbar-fixed">
+              <nav class="transparent z-depth-0">
+                <div class="nav-wrapper">
+                  <a href="{% url 'communicate:index' %}" class="brand-logo">yonayona</a>
+                  <ul id="nav-mobile" class="right">
+                    <li>
+                      <a href="#" data-target="settings-slide-out" id="slide-out-btn" class="sidenav-trigger"><i class="material-icons right icon-white">settings</i></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
           </div>
+          <!--ナビゲーションヘッダ - デスクトップ用-->
+          <!--ナビゲーションヘッダ - スマホ用-->
+          <div class="hide-on-med-and-up">
+            <div class="row">
+              <nav class="transparent z-depth-0">
+                <div class="nav-wrapper">
+                  <a href="{% url 'communicate:index' %}" class="brand-logo">yonayona</a>
+                </div>
+              </nav>
+            </div>
+            <div class="row">
+              <nav class="transparent z-depth-0">
+                <div class="nav-wrapper">
+                  <ul id="nav-mobile" class="right">
+                    <li>
+                      <a href="#" data-target="settings-slide-out" id="slide-out-btn" class="sidenav-trigger"><i class="material-icons right icon-white">settings</i></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <!--ナビゲーションヘッダ - スマホ用-->
           <!--サイドバー-->
           <ul id="settings-slide-out" class="sidenav grey lighten-2">
             <li><a class="subheader">Music</a></li>
