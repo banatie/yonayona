@@ -113,6 +113,11 @@ i.icon-white {
     direction: rtl;
     overflow: auto;
 }
+#conversation-history-smartphone {
+    height: 18vh;
+    direction: rtl;
+    overflow: auto;
+}
 #active-message-history {
     height: 45vh;
     overflow: auto;

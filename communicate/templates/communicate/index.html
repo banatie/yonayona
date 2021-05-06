@@ -190,8 +190,8 @@
             <li><a class="waves-effect" href="{% url 'communicate:logout' %}">Logout</a></li>
           </ul>
           <!--サイドナビ-->
-          <!--サイドバー-->
           <div class="row">
+            <!--サイドバー - デスクトップ用-->
             <div class="hide-on-small-only">
               <div class="col l3" id="conversation-history">
                 {% for conversation in history_conversations %}
@@ -225,7 +225,7 @@
                 {% endfor %}
               </div>
             </div>
-            <!--サイドバー-->
+            <!--サイドバー - デスクトップ用-->
             <div class="col l9 s12">
               <div class="container">
                 {% if active_conversation.id %}
@@ -474,7 +474,6 @@
                     messageHistory.scrollTop = messageHistory.scrollHeight;
                   </script>
                 {% else %}
-
                   <!--交信外ページ-->
                   <div class="left-align">
                     <h1>夜な夜な、話そう</h1>
@@ -500,6 +499,43 @@
                      </div>
                     {% endif %}
                   </div>
+                  <!--サイドバー - スマホ用-->
+                  <div class="row">
+                    <div class="hide-on-med-and-up">
+                      <div class="col s12" id="conversation-history-smartphone">
+                        {% for conversation in history_conversations %}
+                          <div class="row">
+                            <div class="col s8">
+                              <a href="{% url 'communicate:view_conversation' conversation.id %}" class="waves-effect waves-light grey darken-4 btn-large btn-conversation">
+                                <i class="material-icons left">chat_bubble</i>
+                                {{ conversation.date }}<br>
+                                <span class="btn-sub-text right">{{ conversation.duration }}</span>
+                              </a>
+                            </div>
+                            <div class="col offset-s1 s3">
+                              <!--モーダル-->
+                              <!-- modal trigger -->
+                              <a href="#modal-delete-conversation-smartphone" class="waves-effect waves-light grey darken-4 btn-large btn-delete-conversation modal-trigger">
+                                <i class="material-icons icon-white">delete</i>
+                              </a>
+                              <!-- delete conversation modal -->
+                              <div id="modal-delete-conversation-smartphone" class="modal left-align">
+                                <div class="modal-content black-text">
+                                  <h4>この会話を削除しますか</h4>
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="{% url 'communicate:delete_conversation' conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                                  <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                                </div>
+                              </div>
+                              <!--モーダル-->
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                  <!--サイドバー - スマホ用-->
                   <!--交信外ページ-->
                 {% endif %}
               </div>
