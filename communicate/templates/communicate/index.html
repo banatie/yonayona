@@ -192,36 +192,38 @@
           <!--サイドナビ-->
           <!--サイドバー-->
           <div class="row">
-            <div class="col l3" id="conversation-history">
-              {% for conversation in history_conversations %}
-                <div class="row">
-                  <div class="col l8">
-                    <a href="{% url 'communicate:view_conversation' conversation.id %}" class="waves-effect waves-light grey darken-4 btn-large btn-conversation">
-                      <i class="material-icons left">chat_bubble</i>
-                      {{ conversation.date }}<br>
-                      <span class="btn-sub-text right">{{ conversation.duration }}</span>
-                    </a>
-                  </div>
-                  <div class="col offset-l1 l3">
-                    <!--モーダル-->
-                    <!-- modal trigger -->
-                    <a href="#modal-delete-conversation" class="waves-effect waves-light grey darken-4 btn-large btn-delete-conversation modal-trigger">
-                      <i class="material-icons icon-white">delete</i>
-                    </a>
-                    <!-- delete conversation modal -->
-                    <div id="modal-delete-conversation" class="modal left-align">
-                      <div class="modal-content black-text">
-                        <h4>この会話を削除しますか</h4>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="{% url 'communicate:delete_conversation' conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
-                        <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
-                      </div>
+            <div class="hide-on-small-only">
+              <div class="col l3" id="conversation-history">
+                {% for conversation in history_conversations %}
+                  <div class="row">
+                    <div class="col l8">
+                      <a href="{% url 'communicate:view_conversation' conversation.id %}" class="waves-effect waves-light grey darken-4 btn-large btn-conversation">
+                        <i class="material-icons left">chat_bubble</i>
+                        {{ conversation.date }}<br>
+                        <span class="btn-sub-text right">{{ conversation.duration }}</span>
+                      </a>
                     </div>
-                    <!--モーダル-->
+                    <div class="col offset-l1 l3">
+                      <!--モーダル-->
+                      <!-- modal trigger -->
+                      <a href="#modal-delete-conversation" class="waves-effect waves-light grey darken-4 btn-large btn-delete-conversation modal-trigger">
+                        <i class="material-icons icon-white">delete</i>
+                      </a>
+                      <!-- delete conversation modal -->
+                      <div id="modal-delete-conversation" class="modal left-align">
+                        <div class="modal-content black-text">
+                          <h4>この会話を削除しますか</h4>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="{% url 'communicate:delete_conversation' conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                          <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                        </div>
+                      </div>
+                      <!--モーダル-->
+                    </div>
                   </div>
-                </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
             <!--サイドバー-->
             <div class="col l9">
