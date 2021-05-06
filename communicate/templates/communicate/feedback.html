@@ -61,33 +61,33 @@
         <div class="container">
          {% if message %}
           <div class="row">
-           <div class="col s12">
+           <div class="col l12 s12">
             <h3 class="center-align">{{ message }}</h3>
            </div>
           </div>
           <div class="row">
-           <div class="col offset-s9 s3">
+           <div class="col offset-l9 l3 offset-s5 s6">
             <a href="{% url 'communicate:index' %}" class="waves-effect waves-light btn-large">交信に戻る</a>
            </div>
           </div>
          {% else %}
           <div class="row">
-            <form class="col s12" action="{% url 'communicate:feedback' %}" method="post">
+            <form class="col l12 s12" action="{% url 'communicate:feedback' %}" method="post">
             {% csrf_token %}
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col l10 s10">
               <i class="material-icons prefix icon-white">account_circle</i>
               <input name="title" id="title" type="text" class="validate" autofocus>
               <label for="title">タイトル</label>
               </div>
-              <div class="input-field col s12">
+              <div class="input-field col l10 s10">
               <i class="material-icons prefix icon-white">account_circle</i>
               <textarea name="message" id="feedback_message" class="materialize-textarea white-text"></textarea>
               <label for="feedback_message">ご意見</label>
               </div>
             </div>
             <div class="row">
-              <div class="col offset-s11 s2">
+              <div class="col offset-l9 l2 offset-s7 s4">
               <button id="btn-send-feedback" class="btn-large waves-effect waves-light tooltipped" data-position="top" data-tooltip="Ctrl + Enter"　type="submit" name="action">送信</button>
               </div>
             </div>
