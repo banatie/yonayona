@@ -226,7 +226,7 @@
               </div>
             </div>
             <!--サイドバー-->
-            <div class="col l9">
+            <div class="col l9 s12">
               <div class="container">
                 {% if active_conversation.id %}
                   <!--{{ value|json_script:"<id>" }}-->
@@ -235,19 +235,19 @@
                   {% if active_conversation.user_count == 1 %}
                     <!--マッチング待ちページ-->
                     <div class="row">
-                      <div class="col l12 center-align">
+                      <div class="col l12 s12 center-align">
                         <h3>交信相手を探しています...</h3>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col l12">
+                      <div class="col l12 s12">
                         <div class="progress">
                           <div class="indeterminate"></div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col offset-l4 l4">
+                      <div class="col offset-l4 l4 offset-s2 s8">
                         <a class="waves-effect waves-light btn-large modal-trigger" href="{% url 'communicate:cancel_conversation' active_conversation.id %}">交信をキャンセル</a>
                       </div>
                     </div>
@@ -477,7 +477,7 @@
 
                   <!--交信外ページ-->
                   <div class="left-align">
-                    <h3>夜な夜な、話そう</h3>
+                    <h1>夜な夜な、話そう</h1>
                     {% if is_available %}
                       <div class="row" id="user-top">
                         <div class="col l4">
