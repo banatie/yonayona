@@ -286,9 +286,9 @@
                       <div class="col l12 s12" id="active-message-history">
                         {% for message in messages_to_communicate %}
                           {% if message.user_from.username == user.username %}
-                            <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                            <p class="conversation right-align col offset-l3 l9 offset-s3 s9">{{ message.text|linebreaksbr }}</p>
                           {% else %}
-                            <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                            <p class="conversation left-align col l9 s9">{{ message.text|linebreaksbr }}</p>
                           {% endif %}
                         {% endfor %}
                       </div>
@@ -376,8 +376,16 @@
                         /* align according to the sender */
                         if (sender == "{{ user.username }}") {
                           messageP.classList.add('right-align');
+                          messageP.classList.add('col');
+                          messageP.classList.add('offset-l3');
+                          messageP.classList.add('l9');
+                          messageP.classList.add('offset-s3');
+                          messageP.classList.add('s9');
                         } else {
                           messageP.classList.add('left-align');
+                          messageP.classList.add('col');
+                          messageP.classList.add('l9');
+                          messageP.classList.add('s9');
                         }
 
                         var messageHistory = document.getElementById('active-message-history');
@@ -454,12 +462,12 @@
                   {% endif %}
                 {% elif messages_to_view %}
                   <div class="row">
-                    <div class="col l12" id="inactive-message-history">
+                    <div class="col l12 s12" id="inactive-message-history">
                       {% for message in messages_to_view %}
                         {% if message.user_from.username == user.username %}
-                          <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
+                          <p class="conversation right-align col offset-l3 l9 offset-s3 s9">{{ message.text|linebreaksbr }}</p>
                         {% else %}
-                          <p class="conversation left-align">{{ message.text|linebreaksbr }}</p>
+                          <p class="conversation left-align col l9 s9">{{ message.text|linebreaksbr }}</p>
                         {% endif %}
                       {% endfor %}
                     </div>
