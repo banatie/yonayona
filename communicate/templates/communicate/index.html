@@ -231,7 +231,6 @@
                 {% if active_conversation.id %}
                   <!--{{ value|json_script:"<id>" }}-->
                   {{ active_conversation.id|json_script:"active_conversation.id" }}
-                  <!--交信中ページ-->
                   {% if active_conversation.user_count == 1 %}
                     <!--マッチング待ちページ-->
                     <div class="row">
@@ -282,8 +281,9 @@
                     </script>
                     <!--マッチング待ちページ-->
                   {% else %}
+                    <!--交信中ページ-->
                     <div class="row">
-                      <div class="col l12" id="active-message-history">
+                      <div class="col l12 s12" id="active-message-history">
                         {% for message in messages_to_communicate %}
                           {% if message.user_from.username == user.username %}
                             <p class="conversation right-align">{{ message.text|linebreaksbr }}</p>
@@ -294,7 +294,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="input-field col l12" id="message-sender">
+                      <div class="input-field col l12 s12" id="message-sender">
                         <textarea id="message" class="white-text" autofocus></textarea>
                       </div>
                     </div>
@@ -306,35 +306,35 @@
                         <li><a class="waves-effect waves-light red accent-1 white-text modal-trigger center" href="#modal-report-user">通報</a></li>
                       </ul>
                       <!--モーダル-->
-                        <div id="modal-report-user" class="modal">
-                          <div class="modal-content black-text">
-                            <div class="collection">
-                              <a href="{% url 'communicate:report_user' active_conversation.id '出会いを求めるような発言' %}" class="collection-item">出会いを求めるような発言</a>
-                              <a href="{% url 'communicate:report_user' active_conversation.id '性的な発言' %}" class="collection-item">性的な発言</a>
-                              <a href="{% url 'communicate:report_user' active_conversation.id '暴力的または不快な発言' %}" class="collection-item">暴力的または不快な発言</a>
-                              <a href="{% url 'communicate:report_user' active_conversation.id '差別的または攻撃的な発言' %}" class="collection-item">差別的または攻撃的な発言</a>
-                              <a href="{% url 'communicate:report_user' active_conversation.id '有害または危険な発言' %}" class="collection-item">有害または危険な発言</a>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <a class="modal-close waves-effect waves-green btn-flat">キャンセル</a>
+                      <div id="modal-report-user" class="modal">
+                        <div class="modal-content black-text">
+                          <div class="collection">
+                            <a href="{% url 'communicate:report_user' active_conversation.id '出会いを求めるような発言' %}" class="collection-item">出会いを求めるような発言</a>
+                            <a href="{% url 'communicate:report_user' active_conversation.id '性的な発言' %}" class="collection-item">性的な発言</a>
+                            <a href="{% url 'communicate:report_user' active_conversation.id '暴力的または不快な発言' %}" class="collection-item">暴力的または不快な発言</a>
+                            <a href="{% url 'communicate:report_user' active_conversation.id '差別的または攻撃的な発言' %}" class="collection-item">差別的または攻撃的な発言</a>
+                            <a href="{% url 'communicate:report_user' active_conversation.id '有害または危険な発言' %}" class="collection-item">有害または危険な発言</a>
                           </div>
                         </div>
-                        <!--モーダル-->
-                        <!--モーダル-->
-                        <div id="modal-end-conversation" class="modal">
-                          <div class="modal-content black-text">
-                            <h4>この交信を終了しますか？</h4>
-                          </div>
-                          <div class="modal-footer">
-                            <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
-                            <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
-                          </div>
+                        <div class="modal-footer">
+                          <a class="modal-close waves-effect waves-green btn-flat">キャンセル</a>
                         </div>
-                      <div class="col l2 right">
+                      </div>
+                      <!--モーダル-->
+                      <!--モーダル-->
+                      <div id="modal-end-conversation" class="modal">
+                        <div class="modal-content black-text">
+                          <h4>この交信を終了しますか？</h4>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="{% url 'communicate:end_conversation' active_conversation.id %}" class="modal-close waves-effect waves-green btn-flat">はい</a>
+                          <a class="modal-close waves-effect waves-green btn-flat">いいえ</a>
+                        </div>
+                      </div>
+                      <div class="col l2 s4 right">
                         <a id="btn-send-message" class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="Ctrl + Enter" type="submit" name="action">交信</a>
                       </div>
-                        <!--モーダル-->
+                      <!--モーダル-->
                     </div>
                     <script>
                       /* scroll down at refresh */
