@@ -25,7 +25,7 @@
 
         <!--indexページ-->
         {% if not user.is_authenticated %}
-          <!--デスクトップ用　ナビゲーションヘッダ-->
+          <!--ナビゲーションヘッダ - デスクトップ用-->
           <div class="hide-on-small-only">
             <div class="navbar-fixed">
               <nav class="transparent z-depth-0">
@@ -39,7 +39,8 @@
               </nav>
             </div>
           </div>
-          <!--スマホ用　ナビゲーションヘッダ-->
+          <!--ナビゲーションヘッダ - デスクトップ用-->
+          <!--ナビゲーションヘッダ - スマホ用-->
           <div class="hide-on-med-and-up">
             <div class="row">
               <nav class="transparent z-depth-0">
@@ -59,7 +60,7 @@
               </nav>
             </div>
           </div>
-          <!--ナビゲーションヘッダ-->
+          <!--ナビゲーションヘッダ - スマホ用-->
           <div class="container">
             <div id="hero-header">
               <h3>夜な夜な、話そう</h3>
