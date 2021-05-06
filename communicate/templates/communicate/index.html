@@ -489,9 +489,14 @@
                       </div>
                     {% else %}
                      <div class="row" id="availability_info">
-                        <div class="col l12">
-                      <h5>ごめんなさい... <br>{{ working_hours }}のみ交信ができます</h5>
-                     </div>
+                      <div class="col l12 s12">
+                        <div class="hide-on-small-only">
+                          <h4>ごめんなさい... <br>{{ working_hours }}のみ交信ができます</h4>
+                        </div>
+                        <div class="hide-on-med-and-up">
+                          <h4>ごめんなさい... <br>{{ working_hours }}<br>のみ交信ができます</h4>
+                        </div>
+                      </div>
                      </div>
                     {% endif %}
                   </div>
