@@ -13,17 +13,6 @@
     cover - fit as minimum size
     */
 }
-@media screen and (min-width: 100px) and (max-width: 480px) {
-    .key-visual {
-        background-image: url("../images/night_forest_small.jpg");
-    }
-}
-
-@media screen and (min-width: 480px) and (max-width: 768px) {
-    .key-visual {
-        background-image: url("../images/night_forest_medium.jpg");
-    }
-}
 
 /* Font */
 @font-face {
