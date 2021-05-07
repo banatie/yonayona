@@ -140,6 +140,12 @@ CHANNEL_LAYERS = {
         },
     },
 }
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL'),
+    }
+}
 
 CRONJOBS = [
     ('0 */1 * * *', 'communicate.cron.end_all_conversation')
