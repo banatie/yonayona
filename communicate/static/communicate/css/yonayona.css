@@ -2,8 +2,10 @@
 .key-visual {
     background-image: url("../images/night_forest.jpg");
     background-repeat: no-repeat;
-    height: 100vh;
+    background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
     /*
     vh - view port height
     background-size: auto/contain/cover
@@ -11,19 +13,6 @@
     contain - fit as maximum size
     cover - fit as minimum size
     */
-}
-@media screen and (min-width: 100px) and (max-width: 480px) {
-    .key-visual {
-        background-image: url("../images/night_forest_small.jpg");
-        background-size: 100% 100%;
-    }
-}
-
-@media screen and (min-width: 480px) and (max-width: 768px) {
-    .key-visual {
-        background-image: url("../images/night_forest_medium.jpg");
-        background-size: 100% 100%;
-    }
 }
 
 /* Font */
