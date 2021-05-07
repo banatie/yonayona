@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class User(AbstractUser):
     # config
-    is_bgm_on = models.BooleanField(default=True)
+    is_bgm_on = models.BooleanField(default=False)
 
 class Conversation(models.Model):
     is_active = models.BooleanField(default=True)
