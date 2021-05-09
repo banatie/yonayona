@@ -1,1 +1,1 @@
-web: daphne -b 0.0.0.0 -p $PORT yonayona.asgi:application -v2
+web: gunicorn yonayona.wsgi --log-file -
